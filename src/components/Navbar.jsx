@@ -3,9 +3,8 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/bs-logo.png";
 
 const links = [
-  { to: "/", label: "Home", end: true },
+  { to: "/", label: "Home" },
   { to: "/events", label: "Events" },
-  { to: "/register", label: "Register" },
   { to: "/team", label: "Team" },
 ];
 
@@ -13,10 +12,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const linkClass = ({ isActive }) =>
-    `relative font-body text-base tracking-wide transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-bs-pink after:shadow-[0_0_6px_#d13aaa] after:transition-transform after:duration-300 ${
-      isActive
-        ? "text-bs-pink text-glow-pink after:scale-x-100"
-        : "text-white hover:text-bs-pink hover:after:scale-x-100"
+    `font-body text-base tracking-wide transition-colors ${
+      isActive ? "text-bs-orange text-glow-orange" : "text-white hover:text-bs-orange"
     }`;
 
   return (
@@ -35,16 +32,19 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-10 md:flex">
           {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={linkClass}>
+            <NavLink key={l.to} to={l.to} end={l.to === "/"} className={linkClass}>
               {l.label.toUpperCase()}
             </NavLink>
           ))}
-          <a
-            href="/#contact"
-            className="relative font-body text-base tracking-wide text-white transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-bs-pink after:shadow-[0_0_6px_#d13aaa] after:transition-transform after:duration-300 hover:text-bs-pink hover:after:scale-x-100"
-          >
+          <a href="/#contact" className="font-body text-base tracking-wide text-white transition-colors hover:text-bs-orange">
             CONTACT
           </a>
+          <NavLink
+            to="/register"
+            className="rounded-lg border border-white px-5 py-2 font-body text-base tracking-wide text-white shadow-[0_0_3.45px_#d13aaa] transition hover:scale-105"
+          >
+            REGISTER
+          </NavLink>
         </nav>
 
         <button
@@ -73,12 +73,8 @@ export default function Navbar() {
             <NavLink
               key={l.to}
               to={l.to}
-              end={l.end}
-              className={({ isActive }) =>
-                `font-body text-base tracking-wide transition-colors ${
-                  isActive ? "text-bs-pink text-glow-pink" : "text-white hover:text-bs-pink"
-                }`
-              }
+              end={l.to === "/"}
+              className={linkClass}
               onClick={() => setOpen(false)}
               style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
             >
@@ -94,18 +90,18 @@ export default function Navbar() {
           ))}
           <a
             href="/#contact"
-            className="font-body text-base tracking-wide text-white transition-colors hover:text-bs-pink"
             onClick={() => setOpen(false)}
+            className="font-body text-base tracking-wide text-white transition-colors hover:text-bs-orange"
           >
-            <span
-              className={`block py-3 transition-all duration-300 ${
-                open ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${links.length * 60}ms` : "0ms" }}
-            >
-              CONTACT
-            </span>
+            <span className="block py-3">CONTACT</span>
           </a>
+          <NavLink
+            to="/register"
+            onClick={() => setOpen(false)}
+            className="mt-2 rounded-lg border border-white px-5 py-3 text-center font-body text-white shadow-[0_0_3.45px_#d13aaa] transition hover:scale-[1.02]"
+          >
+            REGISTER
+          </NavLink>
         </nav>
       </div>
     </header>
