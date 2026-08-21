@@ -18,26 +18,23 @@ export default function CountdownTimer({ target }) {
   }, [target]);
 
   const units = [
-    { label: "DAYS", value: remaining.days },
-    { label: "HRS", value: remaining.hours },
-    { label: "MINS", value: remaining.minutes },
-    { label: "SEC", value: remaining.seconds },
+    { label: "Days", value: remaining.days },
+    { label: "Hrs", value: remaining.hours },
+    { label: "Mins", value: remaining.minutes },
+    { label: "Secs", value: remaining.seconds },
   ];
 
   return (
-    <div className="flex items-center justify-center gap-3 sm:gap-4">
+    <div className="flex items-end justify-center gap-3 sm:gap-4">
       {units.map((u) => (
-        <div
-          key={u.label}
-          className="flex w-[70px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 py-3 transition-transform duration-300 hover:scale-105 sm:w-[123px] sm:py-4"
-        >
+        <div key={u.label} className="flex w-[70px] flex-col items-center sm:w-[85px]">
           <span
             key={u.value}
-            className="text-glow-pink animate-tick font-body text-2xl tracking-[0.2em] text-white sm:text-4xl"
+            className="animate-tick font-display text-4xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)] sm:text-5xl"
           >
             {String(u.value).padStart(2, "0")}
           </span>
-          <span className="mt-1 font-body text-[10px] tracking-[0.3em] text-white sm:text-sm">
+          <span className="-mt-1 w-full rounded-xl bg-bs-plum/90 py-2 text-center font-display text-sm font-bold tracking-wide text-bs-white shadow-[0_4px_10px_rgba(0,0,0,0.4)] sm:py-2.5 sm:text-lg">
             {u.label}
           </span>
         </div>

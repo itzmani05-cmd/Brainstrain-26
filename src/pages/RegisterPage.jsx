@@ -162,11 +162,12 @@ export default function RegisterPage() {
     <PublicLayout>
       <PageBackdrop>
         <div className="mx-auto max-w-3xl px-4 pb-24 pt-16">
-          <ScriptHeading as="h1" className="mb-10 text-center">
-            Registration
-          </ScriptHeading>
+          <div className="glass-card rounded-[35px] px-4 py-10 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:px-10 sm:py-14">
+            <ScriptHeading as="h1" className="mb-10 text-center">
+              Registration
+            </ScriptHeading>
 
-          <Reveal className="rounded-[28px] bg-[#ededed] p-6 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-10">
+            <Reveal className="rounded-[20px] bg-[#ededed] p-6 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-10">
             {result?.ok ? (
               <div className="py-10 text-center">
                 <p className="text-3xl">🎉</p>
@@ -408,7 +409,8 @@ export default function RegisterPage() {
                 )}
               </form>
             )}
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </PageBackdrop>
     </PublicLayout>
