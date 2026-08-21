@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import PublicLayout from "../components/PublicLayout";
 import NeonButton from "../components/NeonButton";
 import ScriptHeading from "../components/ScriptHeading";
-import CountdownTimer from "../components/CountdownTimer";
 import Reveal from "../components/Reveal";
-import { CalendarIcon, LocationIcon } from "../components/icons";
 import { supabase } from "../lib/supabaseClient";
 import { resolveEventImage } from "../data/eventImages";
 import bgHero from "../assets/bg-hero.webp";
 import bgGridSun from "../assets/bg-grid-sun.webp";
 import bsLogo from "../assets/bs-logo.png";
-
-const EVENT_DATE = new Date("2026-09-19T00:00:00+05:30");
 
 export default function HomePage() {
   const [events, setEvents] = useState([]);
@@ -76,35 +72,27 @@ export default function HomePage() {
           PRESENTS
         </p>
 
-        <h1
-          className="font-script text-glow-white animate-hero-in mt-6 -rotate-3 skew-x-3 text-6xl leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-8xl md:text-[10rem]"
-          style={{ animationDelay: "180ms" }}
-        >
-          Brainstrain &lsquo;26
-        </h1>
-
-        <div className="animate-hero-in mt-8 px-4" style={{ animationDelay: "320ms" }}>
-          <div className="flex flex-col items-center gap-3 font-body text-base text-black sm:flex-row sm:gap-6 sm:text-xl">
-            <span className="text-glow-orange flex items-center gap-2 rounded-full bg-white/90 px-5 py-2 tracking-[0.15em] shadow-[0_0_18px_rgba(255,108,54,0.35)]">
-              <CalendarIcon className="h-5 w-5 text-bs-orange" />
-              19 SEPT 2026
-            </span>
-            <span className="text-glow-orange flex items-center gap-2 rounded-full bg-white/90 px-5 py-2 tracking-[0.15em] shadow-[0_0_18px_rgba(255,108,54,0.35)]">
-              <LocationIcon className="h-5 w-5 text-bs-orange" />
-              GCT, COIMBATORE
-            </span>
-          </div>
-        </div>
-
-        <div className="animate-hero-in mt-8" style={{ animationDelay: "440ms" }}>
-          <CountdownTimer target={EVENT_DATE} />
+        <div className="animate-hero-in relative mt-6 px-6 py-3 sm:px-10 sm:py-5" style={{ animationDelay: "180ms" }}>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "linear-gradient(to bottom, #ff6c36, #a9214e 48%, #d13aaa)",
+              WebkitMaskImage:
+                "repeating-linear-gradient(to bottom, black 0px, black 5px, transparent 5px, transparent 11px)",
+              maskImage:
+                "repeating-linear-gradient(to bottom, black 0px, black 5px, transparent 5px, transparent 11px)",
+            }}
+          />
+          <h1 className="font-script text-glow-white relative text-6xl leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-8xl md:text-[10rem]">
+            Brainstrain &lsquo;26
+          </h1>
         </div>
 
         <div className="animate-hero-in mt-10 flex flex-col gap-4 sm:flex-row" style={{ animationDelay: "560ms" }}>
-          <NeonButton to="/register" color="pink" className="animate-pulse-glow">
+          <NeonButton to="/register" color="pink" className="animate-pulse-glow bg-black/40">
             REGISTER NOW
           </NeonButton>
-          <NeonButton to="/events" color="blue">
+          <NeonButton to="/events" color="blue" className="bg-black/40">
             EXPLORE EVENTS
           </NeonButton>
         </div>
