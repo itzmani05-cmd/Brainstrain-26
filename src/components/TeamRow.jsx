@@ -9,7 +9,7 @@ export default function TeamRow({ title, members }) {
 
   return (
     <div className="mb-14">
-      <h3 className="mb-6 text-left font-body text-lg font-bold tracking-[0.25em] text-white sm:text-xl">
+      <h3 className="text-glow-pink mb-6 text-center font-body text-lg font-semibold tracking-[0.3em] text-white sm:text-2xl">
         {title.toUpperCase()}
       </h3>
 

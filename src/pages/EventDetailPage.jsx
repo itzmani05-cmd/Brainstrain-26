@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import PublicLayout from "../components/PublicLayout";
 import PageBackdrop from "../components/PageBackdrop";
-import NeonButton from "../components/NeonButton";
 import Reveal from "../components/Reveal";
 import { supabase } from "../lib/supabaseClient";
 
@@ -54,7 +53,7 @@ export default function EventDetailPage() {
           )}
 
           {event && (
-            <Reveal as="div" className="glass-card rounded-[32px] p-6 sm:p-12">
+            <Reveal as="div" className="glass-card rounded-[35px] p-6 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-12">
               <h1 className="font-script text-glow-white text-center text-6xl text-white sm:text-8xl">
                 {event.name}
               </h1>
@@ -103,28 +102,19 @@ export default function EventDetailPage() {
                 </div>
                 {event.prize_pool && (
                   <div className="text-center sm:text-right">
-                    <h3 className="font-body text-sm tracking-[0.2em] text-bs-pink">PRIZE POOL</h3>
-                    <p className="font-body text-3xl text-white">{event.prize_pool}</p>
+                    <h3 className="text-glow-blue font-body text-sm tracking-[0.2em] text-bs-blue">
+                      PRIZE POOL
+                    </h3>
+                    <p className="text-glow-blue font-body text-3xl text-white">{event.prize_pool}</p>
                   </div>
                 )}
               </div>
 
-              <div className="mt-10 flex flex-col items-center gap-3">
-                {event.registration_open ? (
-                  <NeonButton to={`/register?event=${event.slug}`} color="pink">
-                    REGISTER FOR THIS EVENT
-                  </NeonButton>
-                ) : (
-                  <p className="font-body text-sm tracking-widest text-red-300">
-                    REGISTRATION CLOSED
-                  </p>
-                )}
-                {event.is_team_event && (
-                  <p className="font-body text-xs text-bs-white/60">
-                    Team size: {event.min_team_size}–{event.max_team_size} members
-                  </p>
-                )}
-              </div>
+              {!event.registration_open && (
+                <p className="mt-6 text-center font-body text-sm tracking-widest text-red-300">
+                  REGISTRATION CLOSED
+                </p>
+              )}
             </Reveal>
           )}
         </div>

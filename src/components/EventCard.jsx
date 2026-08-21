@@ -6,8 +6,8 @@ export default function EventCard({ event }) {
   const img = resolveEventImage(event.image_url);
 
   return (
-    <div className="glass-card group flex flex-col gap-4 rounded-3xl p-5 transition duration-300 hover:border-bs-pink/40 hover:shadow-[0_0_24px_rgba(209,58,170,0.25)] sm:flex-row sm:items-center sm:p-6">
-      <div className="mx-auto h-32 w-32 shrink-0 overflow-hidden rounded-2xl border-2 border-white shadow-[0_0_15.7px_4px_#491c55] transition duration-300 group-hover:scale-105 sm:mx-0">
+    <div className="group flex flex-col gap-4 rounded-[35px] p-5 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] transition duration-300 sm:flex-row sm:items-center sm:p-6">
+      <div className="mx-auto h-32 w-32 shrink-0 overflow-hidden rounded-[30px] border-[3px] border-white shadow-[0_0_15.7px_8px_rgba(255,108,54,0.45)] transition duration-300 group-hover:scale-105 sm:mx-0">
         {img ? (
           <img src={img} alt={event.name} className="h-full w-full object-cover" />
         ) : (
@@ -16,11 +16,11 @@ export default function EventCard({ event }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-2 text-center sm:text-left">
-        <h3 className="font-body text-2xl font-semibold uppercase tracking-wide text-white">
+        <h3 className="text-glow-pink font-body text-2xl font-semibold uppercase tracking-[0.2em] text-white sm:text-3xl">
           {event.name}
         </h3>
         {event.description && (
-          <p className="font-body text-sm text-bs-white/80 line-clamp-3">{event.description}</p>
+          <p className="font-body text-base text-bs-white/90 line-clamp-3">{event.description}</p>
         )}
 
         <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:items-center">
@@ -43,8 +43,8 @@ export default function EventCard({ event }) {
         </div>
 
         {event.contact_name && (
-          <p className="mt-2 flex items-center justify-center gap-2 font-body text-sm text-bs-white/80 sm:justify-start">
-            <PhoneIcon className="h-4 w-4 fill-current text-bs-white/60" />
+          <p className="mt-2 flex items-center justify-center gap-2 font-body text-lg text-bs-white/90 sm:justify-start">
+            <PhoneIcon className="h-4 w-4 fill-current text-bs-white/70" />
             {event.contact_name} {event.contact_phone}
           </p>
         )}
