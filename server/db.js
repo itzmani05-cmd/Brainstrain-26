@@ -1,4 +1,9 @@
+import dns from "dns";
 import { MongoClient } from "mongodb";
+
+// Works around Node's DNS resolver failing SRV lookups on some Windows
+// networks (ECONNREFUSED from c-ares) even though the OS resolver works fine.
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 let client;
 let db;

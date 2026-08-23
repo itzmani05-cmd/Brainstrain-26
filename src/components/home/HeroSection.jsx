@@ -8,11 +8,11 @@ const EVENT_DATE = new Date("2026-09-19T00:00:00");
 export default function HeroSection() {
   return (
     <section
-      className="relative flex flex-col items-center overflow-hidden bg-cover bg-center px-4 pb-24 pt-26 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
-      style={{ backgroundImage: `url(${bgHero})` }}
+      className="hero-bg relative flex min-h-screen flex-col items-center justify-start overflow-hidden px-4 pb-12 pt-[clamp(4.5rem,13vh,7rem)] text-center sm:min-h-0 sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
+      style={{ "--hero-bg-url": `url(${bgHero})` }}
     >
       <p
-        className="text-glow-orange animate-hero-in font-body text-sm font-semibold tracking-[0.1em] text-white sm:text-xl sm:tracking-[0.1em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
+        className="text-glow-orange animate-hero-in font-body text-[clamp(1rem,4vw,1.875rem)] font-semibold tracking-[0.08em] text-white sm:text-xl sm:tracking-[0.1em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
         style={{ animationDelay: "0ms" }}
       >
         THE LITERARY AND DEBATING SOCIETY
@@ -25,7 +25,7 @@ export default function HeroSection() {
       </p>
 
       <div
-        className="animate-hero-in relative mt-3 px-6 py-6 sm:px-8 sm:py-4 lg:px-14 lg:py-5 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
+        className="animate-hero-in relative mt-3 w-fit max-w-[92vw] mx-auto px-6 py-6 sm:px-8 sm:py-4 lg:px-14 lg:py-5 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
         style={{ animationDelay: "180ms" }}
       >
         <div
@@ -38,16 +38,16 @@ export default function HeroSection() {
               "repeating-linear-gradient(to bottom, black 0px, black 5px, transparent 5px, transparent 11px)",
           }}
         />
-        <h1 className="font-script -mt-12 text-glow-white relative -rotate-13 text-2xl leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-6xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
+        <h1 className="font-script -mt-12 text-glow-white relative -rotate-13 text-[clamp(2.75rem,17vw,4.75rem)] leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-6xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
           Brainstrain
-          <span className="-ml-[0.9em] -pt-15 text-9xl text-[1em] inline-block translate-y-[0.8em] text-white sm:text-6xl md:text-[4rem] lg:text-[5rem] 2xl:text-[6rem] 4xl:text-[8rem] 6xl:text-[10rem]">
+          <span className="-ml-[0.9em] -pt-15 text-[1em] inline-block translate-y-[0.8em] text-white sm:text-6xl md:text-[4rem] lg:text-[5rem] 2xl:text-[6rem] 4xl:text-[8rem] 6xl:text-[10rem]">
             &lsquo;26
           </span>
         </h1>
       </div>
 
       <div
-        className="animate-hero-in mt-4 flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/25 bg-black/30 px-5 py-2 font-body text-[3px] tracking-wide text-white backdrop-blur-sm sm:text-base lg:gap-4 lg:px-6 lg:py-2 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-6 6xl:text-3xl"
+        className="animate-hero-in mt-4 flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/25 bg-black/30 px-4 py-2 font-body text-[11px] tracking-wide text-white backdrop-blur-sm sm:gap-3 sm:px-5 sm:text-base lg:gap-4 lg:px-6 lg:py-2 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-6 6xl:text-3xl"
         style={{ animationDelay: "300ms" }}
       >
         <span className="flex items-center gap-2">
@@ -66,20 +66,20 @@ export default function HeroSection() {
       </div>
 
       <div
-        className="animate-hero-in mt-10 flex flex-col gap-4 sm:flex-row lg:mt-10 lg:gap-6 2xl:mt-16 2xl:gap-8 4xl:mt-24 4xl:gap-10 6xl:mt-32 6xl:gap-14"
+        className="animate-hero-in mt-10 flex w-full flex-col gap-4 sm:w-auto sm:flex-row lg:mt-10 lg:gap-6 2xl:mt-16 2xl:gap-8 4xl:mt-24 4xl:gap-10 6xl:mt-32 6xl:gap-14"
         style={{ animationDelay: "560ms" }}
       >
         <NeonButton
           to="/register"
           color="pink"
-          className="animate-pulse-glow bg-black/40 lg:px-7 lg:py-3.5 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
+          className="animate-pulse-glow w-[85%] max-w-[380px] mx-auto bg-black/40 sm:w-auto sm:mx-0 lg:px-7 lg:py-3.5 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
         >
           REGISTER NOW
         </NeonButton>
         <NeonButton
           to="/events"
           color="blue"
-          className="bg-black/40 lg:px-7 lg:py-3.5 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
+          className="w-[85%] max-w-[380px] mx-auto bg-black/40 sm:w-auto sm:mx-0 lg:px-7 lg:py-3.5 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
         >
           EXPLORE EVENTS
         </NeonButton>

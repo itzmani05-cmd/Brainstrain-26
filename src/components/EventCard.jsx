@@ -22,7 +22,9 @@ export default function EventCard({ event }) {
               {event.name}
             </h3>
             {event.description && (
-              <p className="font-body text-base text-bs-white/90 line-clamp-3">{event.description}</p>
+              <p className="line-clamp-3 whitespace-pre-line font-body text-base text-bs-white/90">
+                {event.description}
+              </p>
             )}
 
             <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -45,21 +47,19 @@ export default function EventCard({ event }) {
             </div>
           </div>
         </div>
-        {event.contact_name && (
-  <div className="flex items-center gap-4 text-left">
-    <PhoneIcon className="h-5 w-5 shrink-0 fill-current text-bs-white/80" />
-
-    <p className="font-body text-xl text-bs-white/90">
-      {event.contact_name}
-    </p>
-
-    {event.contact_phone && (
-      <p className="font-body text-lg text-bs-white/90">
-        {event.contact_phone}
-      </p>
-    )}
-  </div>
-)}
+        {event.contacts?.length > 0 && (
+          <div className="flex flex-col gap-2 text-left sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            {event.contacts.map((c) => (
+              <div key={c.name} className="flex items-center gap-3">
+                <PhoneIcon className="h-5 w-5 shrink-0 fill-current text-bs-white/80" />
+                <p className="font-body text-lg text-bs-white/90 sm:text-xl">
+                  {c.name}
+                  {c.phone && <span className="ml-2 text-base text-bs-white/70 sm:text-lg">{c.phone}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

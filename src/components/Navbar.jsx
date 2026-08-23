@@ -20,14 +20,14 @@ export default function Navbar() {
 
   return (
     <header className="animate-nav-in fixed top-0 left-0 z-50 w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
-        <NavLink to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <NavLink to="/" className="group flex min-w-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>
           <img
             src={logo}
             alt="Brainstrain"
-            className="h-9 w-9 object-contain transition-transform duration-500 group-hover:rotate-[360deg]"
+            className="h-8 w-8 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[360deg] sm:h-9 sm:w-9"
           />
-          <span className="font-script text-glow-white text-2xl text-bs-white sm:text-3xl">
+          <span className="font-script text-glow-white truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
             Brainstrain &lsquo;26
           </span>
         </NavLink>
@@ -48,7 +48,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="flex flex-col gap-1.5 md:hidden"
+          className="flex shrink-0 flex-col gap-1.5 md:hidden"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
         >
