@@ -6,6 +6,9 @@ import EventsPage from "./pages/EventsPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import TeamPage from "./pages/TeamPage";
 import RegisterPage from "./pages/RegisterPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import AdminEventAttendancePage from "./pages/admin/AdminEventAttendancePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -18,6 +21,9 @@ function App() {
         <Route path="/events/:slug" element={<EventDetailPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/admin/:eventSlug" element={<AdminEventAttendancePage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

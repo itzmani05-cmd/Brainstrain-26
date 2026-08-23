@@ -12,20 +12,20 @@ export default function HeroSection() {
       style={{ backgroundImage: `url(${bgHero})` }}
     >
       <p
-        className="text-glow-orange animate-hero-in font-body text-sm font-semibold tracking-[0.2em] text-white sm:text-xl sm:tracking-[0.3em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
+        className="text-glow-orange animate-hero-in font-body text-sm font-semibold tracking-[0.1em] text-white sm:text-xl sm:tracking-[0.1em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
         style={{ animationDelay: "0ms" }}
       >
         THE LITERARY AND DEBATING SOCIETY
       </p>
       <p
-        className="animate-hero-in mt-2 font-body text-xs tracking-[0.4em] text-white sm:text-base lg:text-lg 2xl:text-xl 4xl:text-2xl 6xl:text-3xl"
+        className="animate-hero-in mb-10 mt-2 font-body text-xs tracking-[0.2em] text-white sm:text-base lg:text-lg 2xl:text-xl 4xl:text-2xl 6xl:text-3xl"
         style={{ animationDelay: "80ms" }}
       >
         PRESENTS
       </p>
 
       <div
-        className="animate-hero-in relative mt-3 px-6 py-3 sm:px-10 sm:py-4 lg:px-14 lg:py-6 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
+        className="animate-hero-in relative mt-3 px-6 py-6 sm:px-8 sm:py-4 lg:px-14 lg:py-5 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
         style={{ animationDelay: "180ms" }}
       >
         <div
@@ -38,13 +38,16 @@ export default function HeroSection() {
               "repeating-linear-gradient(to bottom, black 0px, black 5px, transparent 5px, transparent 11px)",
           }}
         />
-        <h1 className="font-script text-glow-white relative text-6xl leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-8xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
-          Brainstrain &lsquo;26
+        <h1 className="font-script -mt-12 text-glow-white relative -rotate-13 text-2xl leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-6xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
+          Brainstrain
+          <span className="-ml-[0.9em] -pt-15 text-9xl text-[1em] inline-block translate-y-[0.8em] text-white sm:text-6xl md:text-[4rem] lg:text-[5rem] 2xl:text-[6rem] 4xl:text-[8rem] 6xl:text-[10rem]">
+            &lsquo;26
+          </span>
         </h1>
       </div>
 
       <div
-        className="animate-hero-in mt-5 flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/25 bg-black/30 px-5 py-2.5 font-body text-xs tracking-wide text-white backdrop-blur-sm sm:text-base lg:gap-4 lg:px-7 lg:py-3 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-6 6xl:text-3xl"
+        className="animate-hero-in mt-4 flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/25 bg-black/30 px-5 py-2 font-body text-[3px] tracking-wide text-white backdrop-blur-sm sm:text-base lg:gap-4 lg:px-6 lg:py-2 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-6 6xl:text-3xl"
         style={{ animationDelay: "300ms" }}
       >
         <span className="flex items-center gap-2">
@@ -58,7 +61,7 @@ export default function HeroSection() {
         </span>
       </div>
 
-      <div className="animate-hero-in mt-8 lg:mt-8 2xl:mt-14 4xl:mt-20 6xl:mt-28" style={{ animationDelay: "380ms" }}>
+      <div className="animate-hero-in mt-6 lg:mt-6 2xl:mt-14 4xl:mt-20 6xl:mt-28" style={{ animationDelay: "380ms" }}>
         <CountdownTimer target={EVENT_DATE} />
       </div>
 

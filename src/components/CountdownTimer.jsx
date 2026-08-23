@@ -29,7 +29,7 @@ export default function CountdownTimer({ target }) {
       {units.map((u) => (
         <div
           key={u.label}
-          className="flex w-[50px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 py-2 transition-transform duration-300 hover:scale-105 sm:w-[73px] sm:py-3 lg:w-[150px] lg:py-4 2xl:w-[180px] 2xl:rounded-2xl 2xl:py-5 4xl:w-[240px] 4xl:py-7 6xl:w-[320px] 6xl:py-10"
+          className="flex w-[50px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 py-2 transition-transform duration-300 hover:scale-105 sm:w-[73px] sm:py-2 lg:w-[120px] lg:py-3 2xl:w-[150px] 2xl:rounded-2xl 2xl:py-5 4xl:w-[240px] 4xl:py-7 6xl:w-[320px] 6xl:py-10"
         >
           <span
             key={u.value}
@@ -37,7 +37,7 @@ export default function CountdownTimer({ target }) {
           >
             {String(u.value).padStart(2, "0")}
           </span>
-          <span className="mt-1 font-body text-[8px] tracking-[0.2em] text-white sm:text-sm lg:text-base 2xl:text-lg 4xl:text-xl 6xl:text-2xl">
+          <span className="mt-0.5 font-body text-[6px] tracking-[0.2em] text-white sm:text-sm lg:text-base 2xl:text-lg 4xl:text-xl 6xl:text-2xl">
             {u.label}
           </span>
         </div>

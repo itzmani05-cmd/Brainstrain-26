@@ -13,7 +13,7 @@ export default function PublicLayout({ children }) {
       <main key={pathname} className="animate-page-in flex-1">
         {children}
       </main>
-      <Footer />
+      {pathname !== "/register" && <Footer />}
     </div>
   );
 }

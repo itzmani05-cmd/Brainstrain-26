@@ -8,7 +8,7 @@ export default function AboutSection() {
   return (
     <section className="relative pt-64">
       <div className="relative mx-auto flex max-w-7xl flex-col pl-16 md:flex-row">
-        <Reveal className="relative -top-16 w-full text-center md:w-1/2 md:text-left">
+        <Reveal className="relative -top-5 w-full text-center md:w-1/2 md:text-left">
           <ScriptHeading as="h2">About Us</ScriptHeading>
 
           <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-bs-white/90 sm:text-lg">
@@ -29,7 +29,7 @@ export default function AboutSection() {
 
         {/* Mobile Logo */}
         <div className="relative mt-10 flex w-full items-center justify-center md:hidden">
-          <div className="relative h-56 w-56 overflow-hidden rounded-full sm:h-72 sm:w-72">
+          <div className="relative h-56 w-56 overflow-hidden rounded-full sm:h-88 sm:w-88">
             <img
               src={bgGridSun}
               alt=""

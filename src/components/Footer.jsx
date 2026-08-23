@@ -1,4 +1,4 @@
-import bgFooter from "../assets/contact/bg-footer.webp";
+import bgFooter from "../assets/ContactRightSide.png";
 import trianglesFrame from "../assets/contact/Triangles.png";
 
 const contacts = [
@@ -8,7 +8,7 @@ const contacts = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-bs-black pb-20 pt-20 sm:pt-24">
+    <footer id="contact" className="relative overflow-hidden bg-bs-black pb-20 pt-32 sm:pt-36">
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
         <div className="w-full max-w-sm sm:max-w-md md:ml-auto md:mr-[4%] md:max-w-lg">
           <h2 className="font-script text-glow-white -rotate-6 text-5xl text-white sm:text-6xl">
@@ -36,7 +36,7 @@ export default function Footer() {
 
             <div className="absolute bottom-[6%] right-[1%] flex flex-col gap-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/literary_and_debating_society?igsi=MXEzcjIwNHl4azQ1MA=="
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
@@ -47,7 +47,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:brainstrain26@gmail.com"
+                href="mailto:litsociety.gct@gmail.com"
                 aria-label="Email"
                 className="neon-border-blue flex h-8 w-8 items-center justify-center rounded-lg text-white transition hover:scale-110 sm:h-9 sm:w-9"
               >
