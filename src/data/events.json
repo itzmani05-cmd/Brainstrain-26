@@ -1,0 +1,245 @@
+[
+  {
+    "name": "Adzap",
+    "slug": "adzap",
+    "description": "Pitch the most outrageous product ideas imaginable! Say invisible socks or a smartphone that only works when you're asleep. Get creative, get funny, and keep the audience in stitches.",
+    "guidelines": [
+      "Your product idea/ad should be unique and humorous. Think outside the box.",
+      "Ensure all team members have a role in the ad and contribute to the overall performance.",
+      "The use of simple props is allowed. Make sure any props are easy to manage within the time constraints.",
+      "Be mindful of the time."
+    ],
+    "rules": [
+      "Each team should have 4-6 members.",
+      "You will have 7 minutes to brainstorm and script your ad.",
+      "Your performance should last 4-5 minutes. Going over the time limit will cost you points.",
+      "Make sure your humor is clean. Offensive content or vulgar language is not allowed.",
+      "The judge's decision is final."
+    ],
+    "category": "Performance",
+    "image_url": "adzap",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.2000",
+    "is_team_event": true,
+    "min_team_size": 4,
+    "max_team_size": 6,
+    "registration_open": true
+  },
+  {
+    "name": "Debate",
+    "slug": "debate",
+    "description": "Take a stand and defend it. A classic for-and-against debate that rewards sharp arguments, quick rebuttals, and a commanding stage presence.",
+    "guidelines": [
+      "Topics will be announced on the spot.",
+      "Speak for and against the motion as assigned.",
+      "Personal attacks and offensive language are not allowed."
+    ],
+    "rules": [
+      "Each team should have 2 members.",
+      "Each speaker gets 3 minutes, with 1 minute for rebuttal.",
+      "Judges' decision is final."
+    ],
+    "category": "Speaking",
+    "image_url": "debate",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.2000",
+    "is_team_event": true,
+    "min_team_size": 2,
+    "max_team_size": 2,
+    "registration_open": true
+  },
+  {
+    "name": "Uno Minuto",
+    "slug": "uno-minuto",
+    "description": "The classic \"Just a Minute\" challenge — speak on a surprise topic for a full sixty seconds without hesitation, repetition, or deviation.",
+    "guidelines": [
+      "Topics are revealed only when you take the stage.",
+      "Keep speaking for the entire minute without long pauses.",
+      "Stay on topic — no deviation."
+    ],
+    "rules": [
+      "Individual participation only.",
+      "You get exactly 60 seconds per topic.",
+      "Hesitation, repetition or deviation may cost you points."
+    ],
+    "category": "Speaking",
+    "image_url": "uno-minuto",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1500",
+    "is_team_event": false,
+    "min_team_size": 1,
+    "max_team_size": 1,
+    "registration_open": true
+  },
+  {
+    "name": "Puzzle",
+    "slug": "puzzle",
+    "description": "A trail of riddles, wordplay, and lateral-thinking puzzles. Race the clock and your fellow teams to crack every clue first.",
+    "guidelines": [
+      "Work through the puzzle stations in order.",
+      "No searching the internet for answers.",
+      "Ask a volunteer if you think a clue is broken."
+    ],
+    "rules": [
+      "Teams of 2-4 members.",
+      "Fastest team with the most correct answers wins.",
+      "Any form of external help leads to disqualification."
+    ],
+    "category": "Puzzle",
+    "image_url": "puzzle",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1500",
+    "is_team_event": true,
+    "min_team_size": 2,
+    "max_team_size": 4,
+    "registration_open": true
+  },
+  {
+    "name": "Drama",
+    "slug": "drama",
+    "description": "Bring a story to life on stage. Original scripts, bold characters, and a live audience — this is theatre in its rawest form.",
+    "guidelines": [
+      "Original scripts only; no copyrighted material without adaptation.",
+      "Keep props minimal and easy to set up within the time limit.",
+      "Content should be appropriate for a general audience."
+    ],
+    "rules": [
+      "Each team should have 4-8 members.",
+      "Performances are limited to 10 minutes including setup.",
+      "The judge's decision is final."
+    ],
+    "category": "Performance",
+    "image_url": "drama",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.2500",
+    "is_team_event": true,
+    "min_team_size": 4,
+    "max_team_size": 8,
+    "registration_open": true
+  },
+  {
+    "name": "Quiz",
+    "slug": "quiz",
+    "description": "Test your general knowledge, literature trivia, and quick recall across multiple rounds of questions.",
+    "guidelines": [
+      "Multiple rounds including a rapid-fire buzzer round.",
+      "No use of phones or reference material during the quiz.",
+      "Team coordination is key — only the appointed speaker may answer."
+    ],
+    "rules": [
+      "Teams of 2 members.",
+      "Each wrong buzzer answer carries negative marking.",
+      "Quizmaster's decision is final."
+    ],
+    "category": "Quiz",
+    "image_url": "quiz",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1500",
+    "is_team_event": true,
+    "min_team_size": 2,
+    "max_team_size": 2,
+    "registration_open": true
+  },
+  {
+    "name": "JAM",
+    "slug": "jam",
+    "description": "Just A Minute — mount the podium and hold the room's attention with a spontaneous, structured minute of speech.",
+    "guidelines": [
+      "Topics are given just before you speak.",
+      "Maintain eye contact and clear articulation.",
+      "Stick to the assigned time."
+    ],
+    "rules": [
+      "Individual participation only.",
+      "Each participant speaks for 1 minute per topic, across 2 rounds.",
+      "The judge's decision is final."
+    ],
+    "category": "Speaking",
+    "image_url": "jam",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1500",
+    "is_team_event": false,
+    "min_team_size": 1,
+    "max_team_size": 1,
+    "registration_open": true
+  },
+  {
+    "name": "Shipwreck",
+    "slug": "shipwreck",
+    "description": "Your ship is going down and you can only save a handful of items and people. A group discussion event that tests persuasion, negotiation, and teamwork under pressure.",
+    "guidelines": [
+      "Listen actively and build on others' points.",
+      "Avoid talking over other participants.",
+      "Reach a group consensus within the time limit."
+    ],
+    "rules": [
+      "Groups of 3-5 participants, formed on the spot.",
+      "Each group discussion round lasts 15 minutes.",
+      "Dominating the floor without letting others speak will cost you points."
+    ],
+    "category": "Group Discussion",
+    "image_url": "shipwreck",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.2000",
+    "is_team_event": true,
+    "min_team_size": 3,
+    "max_team_size": 5,
+    "registration_open": true
+  },
+  {
+    "name": "Poem",
+    "slug": "poem",
+    "description": "Write and perform an original poem on a given theme. Rhythm, imagery, and voice are all fair game.",
+    "guidelines": [
+      "The poem must be original and written for this event.",
+      "Any language is welcome, but please provide an English gist if not in English.",
+      "Recitation should not exceed the time limit."
+    ],
+    "rules": [
+      "Individual participation only.",
+      "Recitation time limit: 3 minutes.",
+      "Plagiarism leads to immediate disqualification."
+    ],
+    "category": "Literary",
+    "image_url": "poem",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1000",
+    "is_team_event": false,
+    "min_team_size": 1,
+    "max_team_size": 1,
+    "registration_open": true
+  },
+  {
+    "name": "Microtale",
+    "slug": "microtale",
+    "description": "Tell a complete story in as few words as possible. A flash-fiction challenge that rewards precision and a sharp final line.",
+    "guidelines": [
+      "Stories must be original and written on the spot.",
+      "Stick to the given word limit and theme.",
+      "Handwritten submissions only, unless stated otherwise."
+    ],
+    "rules": [
+      "Individual participation only.",
+      "Word limit: 100 words.",
+      "Submissions after the time limit will not be accepted."
+    ],
+    "category": "Literary",
+    "image_url": "microtale",
+    "contact_name": "Muthu Pavithra",
+    "contact_phone": "9191090917",
+    "prize_pool": "Rs.1000",
+    "is_team_event": false,
+    "min_team_size": 1,
+    "max_team_size": 1,
+    "registration_open": true
+  }
+]

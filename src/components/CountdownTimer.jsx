@@ -25,19 +25,19 @@ export default function CountdownTimer({ target }) {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-3 sm:gap-4">
+    <div className="flex items-center justify-center gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 4xl:gap-12 6xl:gap-16">
       {units.map((u) => (
         <div
           key={u.label}
-          className="flex w-[70px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 py-3 transition-transform duration-300 hover:scale-105 sm:w-[123px] sm:py-4"
+          className="flex w-[50px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 py-2 transition-transform duration-300 hover:scale-105 sm:w-[73px] sm:py-3 lg:w-[150px] lg:py-4 2xl:w-[180px] 2xl:rounded-2xl 2xl:py-5 4xl:w-[240px] 4xl:py-7 6xl:w-[320px] 6xl:py-10"
         >
           <span
             key={u.value}
-            className="text-glow-pink animate-tick font-body text-2xl tracking-[0.2em] text-white sm:text-4xl"
+            className="text-glow-pink animate-tick font-body text-2xl tracking-[0.1em] text-white sm:text-3xl lg:text-4xl 2xl:text-5xl 4xl:text-6xl 6xl:text-7xl"
           >
             {String(u.value).padStart(2, "0")}
           </span>
-          <span className="mt-1 font-body text-[10px] tracking-[0.3em] text-white sm:text-sm">
+          <span className="mt-1 font-body text-[8px] tracking-[0.2em] text-white sm:text-sm lg:text-base 2xl:text-lg 4xl:text-xl 6xl:text-2xl">
             {u.label}
           </span>
         </div>
