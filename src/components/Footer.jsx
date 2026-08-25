@@ -8,22 +8,15 @@ const contacts = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-bs-black pb-20 pt-32 sm:pt-36">
+    <footer id="contact" className="relative overflow-hidden bg-bs-black pb-10 pt-24 sm:pt-32">
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
         <div className="w-full max-w-sm sm:max-w-md md:ml-auto md:mr-[4%] md:max-w-lg">
           <h2 className="font-script text-glow-white -rotate-6 text-5xl text-white sm:text-6xl">
             Contact
           </h2>
 
-          <div className="relative mx-auto mt-6 aspect-[677/882] w-full sm:mt-3">
-            <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center">
-              <img
-                src={trianglesFrame}
-                alt=""
-                aria-hidden
-                className="h-full w-full select-none object-contain opacity-95"
-              />
-            </div>
+          <div className="relative mx-auto mt-2 aspect-[677/882] w-full sm:mt-1">
+          
 
             <div className="absolute left-[44%] top-[46%] z-[5] w-[58%] -translate-x-1/2 -translate-y-1/2 text-center">
               <div className="flex flex-col items-center gap-3">
@@ -42,7 +35,7 @@ export default function Footer() {
                 ))}
               </div>
 
-              <div className="mt-4 flex items-center justify-center gap-3 sm:mt-5">
+              <div className="mt-8 flex items-center justify-center gap-3 sm:mt-10">
                 <a
                   href="https://www.instagram.com/literary_and_debating_society?igsi=MXEzcjIwNHl4azQ1MA=="
                   target="_blank"
@@ -72,10 +65,10 @@ export default function Footer() {
           src={bgFooter}
           alt=""
           aria-hidden
-          className="pointer-events-none relative mx-auto mt-10 block w-[85%] max-w-sm mix-blend-lighten sm:w-[70%] sm:max-w-md md:absolute md:inset-y-0 md:left-0 md:top-1/2 md:mx-0 md:mt-0 md:w-[42%] md:max-w-xl md:-translate-y-1/2"
+          className="pointer-events-none relative mx-auto mt-4 block w-[85%] max-w-sm mix-blend-lighten sm:w-[70%] sm:max-w-md md:absolute md:inset-y-0 md:left-0 md:top-1/2 md:mx-0 md:mt-0 md:w-[42%] md:max-w-xl md:-translate-y-1/2"
         />
 
-        <p className="relative mt-10 font-body text-sm tracking-[0.3em] text-bs-white/70">
+        <p className="relative mt-0 w-full text-right font-body text-sm tracking-[0.3em] text-bs-white/70">
           POWERED BY THE LITERARY AND DEBATING SOCIETY
         </p>
       </div>

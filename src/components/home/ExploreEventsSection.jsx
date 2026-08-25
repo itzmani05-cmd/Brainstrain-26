@@ -39,7 +39,7 @@ export default function ExploreEventsSection() {
               type="button"
               onClick={() => scrollBy(-1)}
               aria-label="Previous events"
-              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition hover:scale-110 hover:border-bs-pink sm:flex"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition hover:scale-110 hover:border-bs-pink"
             >
               ‹
             </button>
@@ -73,13 +73,12 @@ export default function ExploreEventsSection() {
               )
             )}
           </div>
-
           {canScroll && (
             <button
               type="button"
               onClick={() => scrollBy(1)}
               aria-label="Next events"
-              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition hover:scale-110 hover:border-bs-pink sm:flex"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition hover:scale-110 hover:border-bs-pink"
             >
               ›
             </button>

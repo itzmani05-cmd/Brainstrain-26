@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import logo from "../assets/bs-logo.png";
 
 const links = [
@@ -12,11 +12,13 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const linkClass = ({ isActive }) =>
     `font-body text-base tracking-wide transition-colors ${
       isActive ? "text-bs-orange text-glow-orange" : "text-white hover:text-bs-orange"
     }`;
+  const visibleLinks = links.filter((l) => l.to !== "/#contact" || pathname === "/");
 
   return (
     <header className="animate-nav-in fixed top-0 left-0 z-50 w-full">
@@ -33,7 +35,7 @@ export default function Navbar() {
         </NavLink>
 
         <nav className="hidden items-center gap-10 md:flex">
-          {links.map((l) =>
+          {visibleLinks.map((l) =>
             l.hash ? (
               <a key={l.to} href={l.to} className={linkClass({ isActive: false })}>
                 {l.label.toUpperCase()}
@@ -68,7 +70,7 @@ export default function Navbar() {
             open ? "pb-6 pt-2 opacity-100" : "pb-0 pt-0 opacity-0"
           }`}
         >
-          {links
+          {visibleLinks
             .filter((l) => l.to !== "/register")
             .map((l, i) =>
               l.hash ? (
