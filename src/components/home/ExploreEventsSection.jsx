@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NeonButton from "../NeonButton";
 import ScriptHeading from "../ScriptHeading";
@@ -6,18 +6,27 @@ import Reveal from "../Reveal";
 import events from "../../data/events";
 import { resolveEventImage } from "../../data/eventImages";
 
-const VISIBLE_COUNT = 3;
-
 export default function ExploreEventsSection() {
   const [index, setIndex] = useState(0);
-  const canScroll = events.length > VISIBLE_COUNT;
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    function updateVisibleCount() {
+      setVisibleCount(window.innerWidth < 640 ? 2 : 3);
+    }
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  const canScroll = events.length > visibleCount;
 
   function scrollBy(dir) {
     if (!events.length) return;
     setIndex((i) => {
       const next = i + dir;
-      if (next < 0) return Math.max(0, events.length - VISIBLE_COUNT);
-      if (next > events.length - VISIBLE_COUNT) return 0;
+      if (next < 0) return Math.max(0, events.length - visibleCount);
+      if (next > events.length - visibleCount) return 0;
       return next;
     });
   }
@@ -46,13 +55,9 @@ export default function ExploreEventsSection() {
           )}
 
           <div className="grid flex-1 grid-cols-2 gap-6 sm:grid-cols-3 md:gap-10">
-            {(events.length ? events : Array.from({ length: 3 })).slice(index, index + VISIBLE_COUNT).map((ev, i) =>
+            {(events.length ? events : Array.from({ length: visibleCount })).slice(index, index + visibleCount).map((ev, i) =>
               ev ? (
-                <Reveal
-                  key={ev.slug}
-                  delay={i * 100}
-                  className={i === 2 ? "hidden sm:block" : ""}
-                >
+                <Reveal key={ev.slug} delay={i * 100}>
                   <Link to={`/events/${ev.slug}`} className="group flex flex-col items-center gap-4 text-center">
                     <div className="h-32 w-32 overflow-hidden rounded-[30px] border-2 border-white bg-black shadow-[0_0_15.7px_8px_#491c55] transition duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_12px_#7a2f8f] sm:h-44 sm:w-44">
                       {resolveEventImage(ev.image_url) ? (
@@ -73,6 +78,7 @@ export default function ExploreEventsSection() {
               )
             )}
           </div>
+
           {canScroll && (
             <button
               type="button"
