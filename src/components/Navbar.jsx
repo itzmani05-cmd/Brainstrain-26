@@ -29,7 +29,7 @@ export default function Navbar() {
             alt="Brainstrain"
             className="h-8 w-8 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[360deg] sm:h-9 sm:w-9"
           />
-          <span className="font-script text-glow-white truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
+          <span className="font-script  truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
             Brainstrain &lsquo;26
           </span>
         </NavLink>
