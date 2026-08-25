@@ -10,15 +10,15 @@ export default function Footer() {
   return (
     <footer id="contact" className="relative overflow-hidden bg-bs-black pb-10 pt-24 sm:pt-32">
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
-        <div className="w-full max-w-sm sm:max-w-md md:ml-auto md:mr-[4%] md:max-w-lg">
+        <div className="w-auto w-full max-w-sm text-center sm:max-w-md md:mx-0 md:ml-auto md:mr-[4%] md:max-w-lg md:text-left">
           <h2 className="font-script text-glow-white -rotate-6 text-5xl text-white sm:text-6xl">
             Contact
           </h2>
 
-          <div className="relative mx-auto mt-2 aspect-[677/882] w-full sm:mt-1">
+          <div className="relative mx-auto mt-2 aspect-[677/500] w-full sm:mt-1 sm:aspect-[677/882]">
           
 
-            <div className="absolute left-[44%] top-[46%] z-[5] w-[58%] -translate-x-1/2 -translate-y-1/2 text-center">
+            <div className="absolute left-1/2 top-[46%] z-[5] w-[58%] -translate-x-1/2 -translate-y-1/2 text-center sm:left-[44%]">
               <div className="flex flex-col items-center gap-3">
                 {contacts.map((c) => (
                   <div key={c.name} className="flex flex-col items-center gap-0.5">

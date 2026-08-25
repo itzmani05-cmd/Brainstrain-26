@@ -61,7 +61,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${
+        className={`grid bg-bs-black/95 transition-[grid-template-rows] duration-300 ease-out md:hidden ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >

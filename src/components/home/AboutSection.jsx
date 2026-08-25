@@ -34,14 +34,7 @@ export default function AboutSection() {
               src={bgGridSun}
               alt=""
               aria-hidden
-              className="pointer-events-none h-full w-full object-cover object-[45%_20%]"
-            />
-
-            <img
-              src={bsLogo}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 z-10 m-auto h-25 w-25 object-contain drop-shadow-[0_0_45px_rgba(255,140,60,0.55)] sm:h-20 sm:w-20"
+              className="pointer-events-none h-full w-full object-cover object-[65%_15%]"
             />
           </div>
         </div>
