@@ -64,7 +64,7 @@ export default function TeamRow({ title, members }) {
                 style={{ flex: `0 0 ${100 / visibleCount}%` }}
               >
                 <div
-                  className="h-28 w-28 rounded-full border-2 border-bs-pink/60 bg-gradient-to-br from-[#7a1f2b] to-[#3d0f16] bg-cover bg-center shadow-[0_0_12px_rgba(209,58,170,0.5)] transition duration-300 hover:scale-110 hover:border-bs-pink hover:shadow-[0_0_20px_rgba(209,58,170,0.85)] sm:h-32 sm:w-32"
+                  className="h-36 w-36 rounded-full border-2 border-bs-pink/60 bg-gradient-to-br from-[#7a1f2b] to-[#3d0f16] bg-cover bg-center shadow-[0_0_12px_rgba(209,58,170,0.5)] transition duration-300 hover:scale-110 hover:border-bs-pink hover:shadow-[0_0_20px_rgba(209,58,170,0.85)] sm:h-32 sm:w-32"
                   style={
                     m.photo
                       ? { backgroundImage: `url(${m.photo})`, backgroundPosition: m.focus || "center" }
@@ -72,10 +72,10 @@ export default function TeamRow({ title, members }) {
                   }
                 />
                 <div>
-                  <p className="font-body text-center text-sm font-semibold uppercase leading-tight text-white sm:text-base">
+                  <p className="font-body text-center text-base font-semibold uppercase leading-tight text-white sm:text-base">
                     {m.name}
                   </p>
-                  <p className="font-body text-xs text-bs-white/60 sm:text-sm">{m.role}</p>
+                  <p className="font-body text-sm text-bs-white/60 sm:text-sm">{m.role}</p>
                 </div>
               </div>
             ))}
