@@ -54,7 +54,7 @@ export default function ExploreEventsSection() {
             </button>
           )}
 
-          <div className="grid flex-1 grid-cols-2 gap-6 sm:grid-cols-3 md:gap-10">
+          <div className="grid flex-1 grid-cols-2 gapx-x-10 gap-y-6 sm:grid-cols-3 md:gap-10">
             {(events.length ? events : Array.from({ length: visibleCount })).slice(index, index + visibleCount).map((ev, i) =>
               ev ? (
                 <Reveal key={ev.slug} delay={i * 100}>
