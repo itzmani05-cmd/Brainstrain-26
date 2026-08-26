@@ -44,6 +44,9 @@ export default function RegistrationForm() {
       phone: "",
       collegeName: "",
       collegeCity: "",
+      attendingDrama: false,
+      dramaLeaderName: "",
+      dramaCollegeName: "",
       joinedWhatsapp: false,
       timestamp: "",
       transactionId: "",
@@ -229,6 +232,50 @@ export default function RegistrationForm() {
                 placeholder="City"
               />
             </Field>
+          </div>
+
+          <div className="space-y-4 rounded-xl border border-white/10 bg-black/20 p-4">
+            <label className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                checked={data.attendingDrama}
+                onChange={(e) => update("attendingDrama", e.target.checked)}
+                className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-black/30 accent-bs-pink"
+              />
+              <span className="font-body text-sm text-bs-white/80">
+                Are you attending the Drama event?
+              </span>
+            </label>
+
+            {data.attendingDrama && (
+              <div className="space-y-4 pl-7">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="DRAMA TEAM LEADER NAME">
+                    <input
+                      type="text"
+                      required
+                      className={inputClass}
+                      value={data.dramaLeaderName}
+                      onChange={(e) => update("dramaLeaderName", e.target.value)}
+                      placeholder="Team leader's full name"
+                    />
+                  </Field>
+                  <Field label="DRAMA TEAM COLLEGE NAME">
+                    <input
+                      type="text"
+                      required
+                      className={inputClass}
+                      value={data.dramaCollegeName}
+                      onChange={(e) => update("dramaCollegeName", e.target.value)}
+                      placeholder="Team's college"
+                    />
+                  </Field>
+                </div>
+                <p className="text-glow-orange font-body text-xs font-semibold tracking-wide text-bs-orange">
+                  Submit your PPT before 31 August 2026.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
