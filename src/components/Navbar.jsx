@@ -33,7 +33,7 @@ export default function Navbar() {
             alt="Brainstrain"
             className="h-8 w-8 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[360deg] sm:h-9 sm:w-9"
           />
-          <span className="font-script  truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
+          <span className="font-script truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
             Brainstrain &lsquo;26
           </span>
         </NavLink>
@@ -65,7 +65,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${
+        className={`grid bg-bs-black/95 transition-[grid-template-rows] duration-300 ease-out md:hidden ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
