@@ -63,13 +63,29 @@ app.post("/api/register", async (req, res) => {
       collegeName,
       collegeCity,
       referralCode,
+      attendingDrama,
+      dramaLeaderName,
+      dramaCollegeName,
       joinedWhatsapp,
       timestamp,
       transactionId,
     } = req.body || {};
 
-    if (!name || !email || !phone || !collegeName || !collegeCity || !timestamp || !transactionId) {
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !collegeName ||
+      !collegeCity ||
+      !referralCode ||
+      !timestamp ||
+      !transactionId
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    if (attendingDrama && (!dramaLeaderName || !dramaCollegeName)) {
+      return res.status(400).json({ error: "Drama team details are required when attending drama" });
     }
 
     const db = await getDb();
@@ -84,6 +100,9 @@ app.post("/api/register", async (req, res) => {
       collegeName,
       collegeCity,
       referralCode,
+      attendingDrama: !!attendingDrama,
+      dramaLeaderName: attendingDrama ? dramaLeaderName : "",
+      dramaCollegeName: attendingDrama ? dramaCollegeName : "",
       joinedWhatsapp: !!joinedWhatsapp,
       timestamp,
       transactionId,

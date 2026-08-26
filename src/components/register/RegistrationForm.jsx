@@ -46,6 +46,7 @@ export default function RegistrationForm() {
       phone: "",
       collegeName: "",
       collegeCity: "",
+      referralCode: "AAAAA",
       attendingDrama: false,
       dramaLeaderName: "",
       dramaCollegeName: "",
