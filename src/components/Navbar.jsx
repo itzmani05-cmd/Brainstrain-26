@@ -70,7 +70,7 @@ export default function Navbar() {
         }`}
       >
         <nav
-          className={`flex flex-col gap-1 overflow-hidden border-t border-white/10 px-4 transition-[opacity,padding] duration-300 ease-out ${
+          className={`flex flex-col gap-1 overflow-hidden px-4 transition-[opacity,padding] duration-300 ease-out ${
             open ? "pb-6 pt-2 opacity-100" : "pb-0 pt-0 opacity-0"
           }`}
         >

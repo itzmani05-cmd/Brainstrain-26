@@ -174,15 +174,14 @@
     .hero-bg {
       background-image: linear-gradient(
           to bottom,
-          transparent 0%,
-          transparent 30%,
-          var(--color-bs-orange) 46%,
-          var(--color-bs-maroon) 68%,
-          var(--color-bs-ink) 92%
+          rgba(5, 3, 10, 0.02) 0%,
+          rgba(5, 3, 10, 0.04) 55%,
+          rgba(12, 7, 20, 0.22) 78%,
+          rgba(12, 7, 20, 0.82) 100%
         ),
         var(--hero-bg-url);
-      background-size: 100% 100%, 145% auto;
-      background-position: center top, center top;
+      background-size: 100% 100%, cover;
+      background-position: center, center;
       background-repeat: no-repeat, no-repeat;
     }
   }
