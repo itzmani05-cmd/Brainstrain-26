@@ -15,7 +15,7 @@ export default function Navbar() {
   const { pathname } = useLocation();
 
   const linkClass = ({ isActive }) =>
-    `font-body text-base tracking-wide transition-colors ${
+    `font-body text-base tracking-wide transition-colors 4xl:text-xl 6xl:text-2xl 7xl:text-3xl ${
       isActive ? "text-bs-orange text-glow-orange" : "text-white hover:text-bs-orange"
     }`;
   const visibleLinks = links.filter((l) => l.to !== "/#contact" || pathname === "/");
@@ -26,19 +26,19 @@ export default function Navbar() {
     <header
       className={`animate-nav-in fixed top-0 left-0 z-50 w-full ${solidBg ? "bg-bs-black" : ""}`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 4xl:max-w-[120rem] 4xl:px-12 4xl:py-6 6xl:max-w-[160rem] 6xl:px-20 6xl:py-8 7xl:max-w-[200rem] 7xl:px-28 7xl:py-10">
         <NavLink to="/" className="group flex min-w-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>
           <img
             src={logo}
             alt="Brainstrain"
-            className="h-8 w-8 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[360deg] sm:h-9 sm:w-9"
+            className="h-8 w-8 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[360deg] sm:h-9 sm:w-9 4xl:h-14 4xl:w-14 6xl:h-20 6xl:w-20 7xl:h-24 7xl:w-24"
           />
-          <span className="font-script truncate text-xl text-bs-white sm:text-2xl md:text-3xl">
+          <span className="font-script truncate text-xl text-bs-white sm:text-2xl md:text-3xl 4xl:text-5xl 6xl:text-6xl 7xl:text-7xl">
             Brainstrain &lsquo;26
           </span>
         </NavLink>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-10 md:flex 4xl:gap-16 6xl:gap-20 7xl:gap-24">
           {visibleLinks.map((l) =>
             l.hash ? (
               <a key={l.to} href={l.to} className={linkClass({ isActive: false })}>

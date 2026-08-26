@@ -8,7 +8,7 @@ export default function RegisterPage() {
   return (
     <PublicLayout>
       <PageBackdrop>
-        <div className="mx-auto max-w-3xl px-4 pb-24 pt-40">
+        <div className="mx-auto max-w-3xl px-4 pb-24 pt-40 4xl:max-w-5xl 6xl:max-w-6xl 7xl:max-w-[90rem]">
           <ScriptHeading as="h1" className="mb-10 text-center">
             Registration
           </ScriptHeading>

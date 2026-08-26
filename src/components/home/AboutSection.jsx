@@ -5,7 +5,7 @@ import bgGridSun from "../../assets/About-bg.png";
 
 export default function AboutSection() {
   return (
-    <section className="relative w-full max-w-full overflow-hidden px-5 pt-20 sm:px-6 sm:pt-28 md:px-0 md:pt-64">
+    <section className="relative w-full max-w-full overflow-hidden px-5 pt-20 sm:px-6 sm:pt-28 md:px-0 md:pt-64 4xl:pt-96 6xl:pt-[32rem]">
       <img
         src={bgGridSun}
         alt=""
@@ -14,11 +14,11 @@ export default function AboutSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-bs-black/10 via-transparent to-bs-black" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col md:pl-16 md:flex-row">
+      <div className="relative mx-auto flex max-w-7xl flex-col md:pl-16 md:flex-row 4xl:max-w-[120rem] 4xl:pl-32">
         <Reveal className="w-full text-center md:relative md:-top-5 md:w-1/2 md:text-left">
           <ScriptHeading as="h2">About Us</ScriptHeading>
 
-          <p className="mx-auto mt-6 max-w-xl text-[clamp(1rem,4.5vw,1.375rem)] font-body leading-relaxed text-bs-white/90 sm:text-lg md:mx-0">
+          <p className="mx-auto mt-6 max-w-xl text-[clamp(1rem,4.5vw,1.375rem)] font-body leading-relaxed text-bs-white/90 sm:text-lg md:mx-0 4xl:max-w-3xl 4xl:text-3xl 6xl:max-w-4xl 6xl:text-4xl">
             Brainstrain is an inter-collegiate literary fest hosted by the
             Literary and Debating Society of the Government College of
             Technology, Coimbatore. This fest features a multitude of
@@ -27,8 +27,12 @@ export default function AboutSection() {
             individuals from diverse geographical backgrounds.
           </p>
 
-          <div className="mt-8">
-            <NeonButton to="/team" color="blue" className="w-[min(75%,260px)] min-h-[50px] mx-auto md:w-auto md:mx-0">
+          <div className="mt-8 4xl:mt-14">
+            <NeonButton
+              to="/team"
+              color="blue"
+              className="w-[min(75%,260px)] min-h-[50px] mx-auto md:w-auto md:mx-0 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
+            >
               OUR TEAM
             </NeonButton>
           </div>

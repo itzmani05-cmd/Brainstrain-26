@@ -32,7 +32,7 @@
         "phone": "9489475019"
       }
     ],
-    "prize_pool": "Rs.2000",
+    "prize_pool": "Rs.2250",
     "is_team_event": true,
     "min_team_size": 4,
     "max_team_size": 6,
@@ -74,7 +74,7 @@
         "phone": "9043205113"
       }
     ],
-    "prize_pool": "Rs.2000",
+    "prize_pool": "Rs.1500",
     "is_team_event": true,
     "min_team_size": 2,
     "max_team_size": 2,
@@ -108,11 +108,11 @@
         "phone": "8148410833"
       },
       {
-        "name": "Praveen Kumar A",
+        "name": "Praveen Kumar",
         "phone": "9940404012"
       }
     ],
-    "prize_pool": "Rs.2500",
+    "prize_pool": "Rs.3750",
     "is_team_event": true,
     "min_team_size": 4,
     "max_team_size": 8,
@@ -184,7 +184,7 @@
         "phone": "9385388128"
       }
     ],
-    "prize_pool": "Rs.1000",
+    "prize_pool": "Rs.1500",
     "is_team_event": false,
     "min_team_size": 1,
     "max_team_size": 1,
@@ -219,7 +219,7 @@
         "phone": "9385388128"
       }
     ],
-    "prize_pool": "Rs.1000",
+    "prize_pool": "Rs.1500",
     "is_team_event": false,
     "min_team_size": 1,
     "max_team_size": 1,
@@ -255,7 +255,7 @@
         "phone": "9944768366"
       }
     ],
-    "prize_pool": "Rs.1500",
+    "prize_pool": "Rs.2250",
     "is_team_event": true,
     "min_team_size": 2,
     "max_team_size": 4,
@@ -295,7 +295,7 @@
         "phone": "9944768366"
       }
     ],
-    "prize_pool": "Rs.1500",
+    "prize_pool": "Rs.2250",
     "is_team_event": true,
     "min_team_size": 2,
     "max_team_size": 2,
@@ -340,7 +340,7 @@
         "phone": "7550347146"
       }
     ],
-    "prize_pool": "Rs.2000",
+    "prize_pool": "Rs.1500",
     "is_team_event": true,
     "min_team_size": 3,
     "max_team_size": 5,
