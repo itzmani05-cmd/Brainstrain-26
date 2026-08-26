@@ -32,7 +32,6 @@ export const teamSections = [
   {
     title: "BS'26 - Web Team",
     members: [
-      { name: "Manikandan M", role: "Web Developer", photo: manikandanM },
       { name: "Saravanavel C", role: "UI Designer", photo: saravanavelC },
       { name: "Sanjeev Krishna T", role: "Web Developer", photo: sanjeevKrishna },
       { name: "Gokula Krishnan M", role: "Web Developer", photo: gokulaKrishnan, focus: "center 25%" },

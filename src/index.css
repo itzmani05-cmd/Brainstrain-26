@@ -19,6 +19,7 @@
   --breakpoint-4xl: 160rem;
   --breakpoint-5xl: 192rem;
   --breakpoint-6xl: 240rem;
+  --breakpoint-7xl: 320rem;
 }
 
 @layer base {

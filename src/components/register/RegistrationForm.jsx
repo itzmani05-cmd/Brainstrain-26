@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import NeonButton from "../NeonButton";
+import qrImage from "../../assets/QrPic.jpeg";
 
-// Swap this out for the real UPI QR / payment poster image(s) once they're ready.
-const PAYMENT_IMAGES = [];
+const PAYMENT_IMAGES = [qrImage];
 
 const STEPS = ["Basic Info", "Payment"];
 
 const inputClass =
-  "w-full rounded-lg border border-white/20 bg-black/30 px-4 py-2.5 font-body text-sm text-white placeholder:text-white/30 outline-none transition focus:border-bs-pink focus:shadow-[0_0_0_3px_rgba(209,58,170,0.25)] sm:text-base";
+  "w-full rounded-lg border border-white/20 bg-black/30 px-4 py-2.5 font-body text-sm text-white placeholder:text-white/30 outline-none transition focus:border-bs-pink focus:shadow-[0_0_0_3px_rgba(209,58,170,0.25)] sm:text-base 4xl:rounded-xl 4xl:px-6 4xl:py-4 4xl:text-lg 6xl:text-xl";
 
-const labelClass = "mb-1.5 block font-body text-xs tracking-[0.1em] text-bs-white/70 sm:text-sm";
+const labelClass = "mb-1.5 block font-body text-xs tracking-[0.1em] text-bs-white/70 sm:text-sm 4xl:text-base 6xl:text-lg";
 
 const STORAGE_KEY = "bs_registration_draft";
 
@@ -38,7 +38,9 @@ export default function RegistrationForm() {
   const [submitError, setSubmitError] = useState("");
   const [fee, setFee] = useState(null);
   const [data, setData] = useState(
-    draft?.data ?? {
+    draft?.data
+      ? draft.data
+      : {
       name: "",
       email: "",
       phone: "",
@@ -48,10 +50,11 @@ export default function RegistrationForm() {
       attendingDrama: false,
       dramaLeaderName: "",
       dramaCollegeName: "",
+      referralCode: "",
       joinedWhatsapp: false,
       timestamp: "",
       transactionId: "",
-    }
+        }
   );
 
   function update(field, value) {
@@ -102,25 +105,25 @@ export default function RegistrationForm() {
 
   if (submitted) {
     return (
-      <div className="glass-card rounded-[35px] p-8 text-center shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-14">
-        <h2 className="font-script text-glow-white text-5xl text-white sm:text-6xl">Thank You!</h2>
-        <p className="mt-4 font-body text-bs-white/80">
+      <div className="glass-card rounded-[35px] p-8 text-center shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-14 4xl:max-w-3xl 4xl:mx-auto 4xl:rounded-[48px] 4xl:p-20">
+        <h2 className="font-script text-glow-white text-5xl text-white sm:text-6xl 4xl:text-8xl">Thank You!</h2>
+        <p className="mt-4 font-body text-bs-white/80 4xl:text-xl">
           Your registration has been received.
         </p>
 
-        <span className="text-glow-orange mt-5 inline-flex items-center gap-2 rounded-full border border-bs-orange/40 bg-bs-orange/10 px-4 py-1.5 font-body text-xs font-semibold tracking-[0.15em] text-bs-orange">
+        <span className="text-glow-orange mt-5 inline-flex items-center gap-2 rounded-full border border-bs-orange/40 bg-bs-orange/10 px-4 py-1.5 font-body text-xs font-semibold tracking-[0.15em] text-bs-orange 4xl:px-6 4xl:py-2 4xl:text-base">
           ● PENDING VERIFICATION
         </span>
 
-        <p className="mx-auto mt-4 max-w-sm font-body text-sm text-bs-white/70">
+        <p className="mx-auto mt-4 max-w-sm font-body text-sm text-bs-white/70 4xl:max-w-md 4xl:text-lg">
           After your payment is verified, you&apos;ll receive a confirmation email.
         </p>
 
-        <div className="mx-auto mt-8 max-w-sm border-t border-white/10 pt-6">
-          <h3 className="text-glow-pink font-body text-xs tracking-[0.2em] text-bs-pink">
+        <div className="mx-auto mt-8 max-w-sm border-t border-white/10 pt-6 4xl:max-w-md 4xl:mt-12 4xl:pt-9">
+          <h3 className="text-glow-pink font-body text-xs tracking-[0.2em] text-bs-pink 4xl:text-base">
             QUERIES?
           </h3>
-          <div className="mt-3 flex flex-col gap-1 font-body text-sm text-bs-white/80">
+          <div className="mt-3 flex flex-col gap-1 font-body text-sm text-bs-white/80 4xl:text-lg">
             <p>
               Saravanavel C ·{" "}
               <a href="tel:+919171098222" className="hover:text-bs-pink">
@@ -140,8 +143,8 @@ export default function RegistrationForm() {
   }
 
   return (
-    <div className="glass-card rounded-[35px] p-6 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-12">
-      <div className="mb-8 flex items-center justify-center gap-3">
+    <div className="glass-card rounded-[35px] p-6 shadow-[4px_4px_10px_rgba(0,0,0,0.25)] sm:p-12 4xl:rounded-[48px] 4xl:p-16">
+      <div className="mb-8 flex items-center justify-center gap-3 4xl:mb-12 4xl:gap-5">
         {STEPS.map((label, i) => {
           const n = i + 1;
           const active = step === n;
@@ -239,13 +242,13 @@ export default function RegistrationForm() {
             <input
               type="text"
               className={inputClass}
-              value={data.referralCode}
+              value={data.referralCode ?? ""}
               onChange={(e) => update("referralCode", e.target.value)}
-              placeholder="Enter referral code"
+              placeholder="Your referral code"
             />
           </Field>
 
-          <div className="space-y-4 p-0">
+          <div className="space-y-4 rounded-xl bg-black/20 py-4">
             <label className="flex items-start gap-3">
               <input
                 type="checkbox"
