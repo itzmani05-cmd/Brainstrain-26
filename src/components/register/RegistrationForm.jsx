@@ -261,7 +261,7 @@ export default function RegistrationForm() {
             {data.attendingDrama && (
               <div className="space-y-4 pl-7">
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <Field label="DRAMA TEAM LEADER NAME">
+                  <Field label="TEAM LEADER NAME">
                     <input
                       type="text"
                       required
@@ -271,7 +271,7 @@ export default function RegistrationForm() {
                       placeholder="Team leader's full name"
                     />
                   </Field>
-                  <Field label="DRAMA TEAM COLLEGE NAME">
+                  <Field label="TEAM NAME">
                     <input
                       type="text"
                       required
