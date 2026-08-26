@@ -44,6 +44,7 @@ export default function RegistrationForm() {
       phone: "",
       collegeName: "",
       collegeCity: "",
+      referralCode: "AAAAA",
       attendingDrama: false,
       dramaLeaderName: "",
       dramaCollegeName: "",
@@ -234,7 +235,17 @@ export default function RegistrationForm() {
             </Field>
           </div>
 
-          <div className="space-y-4 rounded-xl border border-white/10 bg-black/20 p-4">
+          <Field label="REFERRAL CODE">
+            <input
+              type="text"
+              className={inputClass}
+              value={data.referralCode}
+              onChange={(e) => update("referralCode", e.target.value)}
+              placeholder="Enter referral code"
+            />
+          </Field>
+
+          <div className="space-y-4 p-0">
             <label className="flex items-start gap-3">
               <input
                 type="checkbox"
