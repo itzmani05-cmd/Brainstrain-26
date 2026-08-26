@@ -38,7 +38,9 @@ export default function RegistrationForm() {
   const [submitError, setSubmitError] = useState("");
   const [fee, setFee] = useState(null);
   const [data, setData] = useState(
-    draft?.data ?? {
+    draft?.data
+      ? draft.data
+      : {
       name: "",
       email: "",
       phone: "",
@@ -47,10 +49,11 @@ export default function RegistrationForm() {
       attendingDrama: false,
       dramaLeaderName: "",
       dramaCollegeName: "",
+      referralCode: "",
       joinedWhatsapp: false,
       timestamp: "",
       transactionId: "",
-    }
+        }
   );
 
   function update(field, value) {
@@ -234,7 +237,17 @@ export default function RegistrationForm() {
             </Field>
           </div>
 
-          <div className="space-y-4 rounded-xl border border-white/10 bg-black/20 p-4">
+          <Field label="REFERRAL CODE">
+            <input
+              type="text"
+              className={inputClass}
+              value={data.referralCode ?? ""}
+              onChange={(e) => update("referralCode", e.target.value)}
+              placeholder="Your referral code"
+            />
+          </Field>
+
+          <div className="space-y-4 rounded-xl bg-black/20 py-4">
             <label className="flex items-start gap-3">
               <input
                 type="checkbox"
