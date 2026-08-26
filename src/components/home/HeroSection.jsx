@@ -8,7 +8,7 @@ const EVENT_DATE = new Date("2026-09-19T00:00:00");
 export default function HeroSection() {
   return (
     <section
-      className="hero-bg relative flex min-h-screen flex-col items-center justify-start overflow-hidden px-4 pb-12 pt-[clamp(4.5rem,13vh,7rem)] text-center sm:min-h-0 sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
+      className="hero-bg relative flex min-h-0 flex-col items-center justify-start overflow-hidden px-4 pb-12 pt-[clamp(4.5rem,13vh,7rem)] text-center sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
       style={{ "--hero-bg-url": `url(${bgHero})` }}
     >
       <p

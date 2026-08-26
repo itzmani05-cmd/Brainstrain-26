@@ -174,13 +174,13 @@
       background-image: linear-gradient(
           to bottom,
           transparent 0%,
-          transparent 30%,
-          var(--color-bs-orange) 46%,
-          var(--color-bs-maroon) 68%,
-          var(--color-bs-ink) 92%
+          transparent 58%,
+          rgba(23, 15, 36, 0.35) 76%,
+          var(--color-bs-plum) 90%,
+          var(--color-bs-ink) 100%
         ),
         var(--hero-bg-url);
-      background-size: 100% 100%, 145% auto;
+      background-size: 100% 100%, cover;
       background-position: center top, center top;
       background-repeat: no-repeat, no-repeat;
     }
