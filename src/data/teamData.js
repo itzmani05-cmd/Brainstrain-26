@@ -14,7 +14,7 @@ import varshini from "../assets/team/varshini.jpg";
 import premkumar from "../assets/team/premkumar.png";
 import sakthiPriya from "../assets/team/sakthi-priya.jpg";
 import gokulaKrishnan from "../assets/team/gokula-krishnan.jpg";
-import manikandanM from "../assets/team/manikandan-m.jpeg";
+
 import maliniR from "../assets/team/malini-r.jpeg";
 
 export const teamSections = [
@@ -33,7 +33,6 @@ export const teamSections = [
     title: "BS'26 - Web Team",
     members: [
       { name: "Saravanavel C", role: "UI Designer", photo: saravanavelC },
-      { name: "Manikandan M", role: "Web Developer", photo: manikandanM },
       { name: "Sanjeev Krishna T", role: "Web Developer", photo: sanjeevKrishna },
       { name: "Gokula Krishnan M", role: "Web Developer", photo: gokulaKrishnan, focus: "center 25%" },
       { name: "Malini R", role: "Web Developer", photo: maliniR, focus: "center 25%" },

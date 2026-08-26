@@ -19,9 +19,13 @@ export default function Navbar() {
       isActive ? "text-bs-orange text-glow-orange" : "text-white hover:text-bs-orange"
     }`;
   const visibleLinks = links.filter((l) => l.to !== "/#contact" || pathname === "/");
+  const solidBg =
+    pathname.startsWith("/team") || pathname.startsWith("/events") || pathname.startsWith("/register");
 
   return (
-    <header className="animate-nav-in fixed top-0 left-0 z-50 w-full">
+    <header
+      className={`animate-nav-in fixed top-0 left-0 z-50 w-full ${solidBg ? "bg-bs-black" : ""}`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <NavLink to="/" className="group flex min-w-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>
           <img

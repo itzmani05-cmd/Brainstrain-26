@@ -6,11 +6,11 @@ export default function EventInfoList({ title, items, color = "pink" }) {
   return (
     <section className="mt-10">
       <h2 className={`font-body text-lg tracking-[0.2em] ${titleClass}`}>{title}</h2>
-      <ol className="mt-3 list-decimal space-y-2 pl-5 font-body leading-relaxed text-bs-white/90">
+      <ul className="mt-3 list-disc space-y-2 pl-5 font-body leading-relaxed text-bs-white/90">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
-      </ol>
+      </ul>
     </section>
   );
 }

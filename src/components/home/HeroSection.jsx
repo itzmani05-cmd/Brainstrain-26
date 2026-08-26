@@ -12,7 +12,7 @@ export default function HeroSection() {
       style={{ "--hero-bg-url": `url(${bgHero})` }}
     >
       <p
-        className="text-glow-orange animate-hero-in font-body text-[clamp(1rem,4vw,1.875rem)] font-semibold tracking-[0.08em] text-white sm:text-xl sm:tracking-[0.1em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
+        className="text-glow-orange animate-hero-in font-body text-[clamp(1rem,4vw,1.875rem)] font-semibold tracking-[0.08em] text-white sm:text-xl sm:tracking-[0.3em] lg:text-2xl 2xl:text-3xl 4xl:text-4xl 6xl:text-5xl"
         style={{ animationDelay: "0ms" }}
       >
         THE LITERARY AND DEBATING SOCIETY
