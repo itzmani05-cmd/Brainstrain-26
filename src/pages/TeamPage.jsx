@@ -21,7 +21,7 @@ export default function TeamPage() {
 
             {teamSections.map((section, i) => (
               <Reveal key={section.title} delay={i * 100} className="w-full">
-                <TeamRow title={section.title} members={section.members} />
+                <TeamRow title={section.title} members={section.members} layout={section.layout} />
               </Reveal>
             ))}
 

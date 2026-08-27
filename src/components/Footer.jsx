@@ -28,14 +28,6 @@ export default function Footer() {
           </div>
 
           <div className="relative w-full max-w-lg text-center md:w-[50%] md:text-left 4xl:max-w-2xl 6xl:max-w-3xl">
-            <div className="mb-2 flex items-center justify-center gap-3 md:justify-start">
-              <span className="h-px w-8 bg-bs-pink" />
-
-              <span className="font-body text-xs uppercase tracking-[0.3em] text-bs-pink 4xl:text-base 6xl:text-lg">
-                Get in touch
-              </span>
-            </div>
-
             <h2 className="font-script text-glow-white -rotate-3 text-5xl text-white sm:text-6xl 4xl:text-8xl 6xl:text-9xl">
               Contact
             </h2>

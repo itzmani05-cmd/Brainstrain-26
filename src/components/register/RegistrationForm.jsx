@@ -286,7 +286,7 @@ export default function RegistrationForm() {
                   </Field>
                 </div>
                 <p className="text-glow-orange font-body text-xs font-semibold tracking-wide text-bs-orange">
-                  Submit your PPT before 31 August 2026.
+                  Submit your script on or before 8th Sept 2026.
                 </p>
               </div>
             )}
