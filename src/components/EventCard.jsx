@@ -48,12 +48,12 @@ export default function EventCard({ event }) {
           </div>
         </div>
         {event.contacts?.length > 0 && (
-          <div className="flex items-center gap-3 text-left">
+          <div className="flex items-start gap-3 text-left">
             <PhoneIcon className="h-5 w-5 shrink-0 fill-current text-bs-white/80 4xl:h-7 4xl:w-7" />
-            <p className="font-body text-lg text-bs-white/90 sm:text-xl 4xl:text-2xl 6xl:text-3xl">
+            <p className="flex flex-col gap-1 font-body text-lg text-bs-white/90 sm:block sm:text-xl 4xl:text-2xl 6xl:text-3xl">
               {event.contacts.map((c, i) => (
                 <span key={c.name}>
-                  {i > 0 && ", "}
+                  {i > 0 && <span className="hidden sm:inline">, </span>}
                   {c.name}
                   {c.phone && <span className="ml-2 text-base text-bs-white/70 sm:text-lg 4xl:text-xl 6xl:text-2xl">{c.phone}</span>}
                 </span>

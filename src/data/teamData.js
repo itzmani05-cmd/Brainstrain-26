@@ -34,7 +34,7 @@ export const teamSections = [
     layout: "two-over-three",
     members: [
       { name: "Saravanavel C", role: "UI Designer", photo: saravanavelC },
-      { name: "Sanjeev Krishna T", role: "Web Developer", photo: sanjeevKrishna },
+      { name: "Sanjeev Krishna", role: "Web Developer", photo: sanjeevKrishna },
       { name: "Gokula Krishnan M", role: "Web Developer", photo: gokulaKrishnan, focus: "center 25%" },
       { name: "Malini R", role: "Web Developer", photo: maliniR, focus: "center 25%" },
       { name: "Manikandan M", role: "Web Developer" , photo: manikandanM, focus: "center" }
