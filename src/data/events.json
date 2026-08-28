@@ -41,7 +41,7 @@
   {
     "name": "Debate",
     "slug": "debate",
-    "description": "Argue. Convince. Win.” Step into the arena of ideas and put your wit, confidence, and communication skills to the test. Think on your feet, defend your stance, challenge opposing views, and adapt quickly as the debate takes unexpected turns. Get ready for a battle of brains, words, and perspectives!",
+    "description": "”Argue. Convince. Win.” Step into the arena of ideas and put your wit, confidence, and communication skills to the test. Think on your feet, defend your stance, challenge opposing views, and adapt quickly as the debate takes unexpected turns. Get ready for a battle of brains, words, and perspectives!",
     "guidelines": [
       "The debate will be conducted in two rounds.",
       "opics will be provided on the spot for both rounds.",
@@ -50,17 +50,26 @@
       "Reading directly from phones or papers is strictly prohibited."
     ],
     "rules": [
-      "Prelims – Block and Tackle",
-      "A random topic will be given on the spot",
-      "1 minute of preparation time.",
-      "1 minute to speak.",
-      "When prompted to TACKLE, speak in favor of the topic.",
-      "When prompted to BLOCK, speak against the topic.",
-      "You may be asked to switch multiple times during your speech.",
-      "Finals",
-      "Finalists will be grouped into teams.",
-      "The format will be explained during the finale.",
-      "Jury’s decision is final."
+      {
+        "heading": "Prelims",
+        "items": [
+          "Block and Tackle",
+          "A random topic will be given on the spot",
+          "1 minute of preparation time.",
+          "1 minute to speak.",
+          "When prompted to TACKLE, speak in favor of the topic.",
+          "When prompted to BLOCK, speak against the topic.",
+          "You may be asked to switch multiple times during your speech."
+        ]
+      },
+      {
+        "heading": "Finals",
+        "items": [
+          "Finalists will be grouped into teams.",
+          "The format will be explained during the finale.",
+          "Jury’s decision is final."
+        ]
+      }
     ],
     "category": "Speaking",
     "image_url": "debate",
@@ -83,7 +92,7 @@
   {
     "name": "Drama",
     "slug": "drama",
-    "description": "Lights rise, the curtain opens, and the story begins. Step into a world where every expression speaks, every silence matters, and every character carries a story waiting to be heard. Transform into your role, command the stage, and leave the audience breathless. Your character. Your story. Your unforgettable moment awaits. Theme: \"Reincarnation\"-\nThe Infinite Soul Travel",
+    "description": "Lights rise, the curtain opens, and the story begins. Step into a world where every expression speaks, every silence matters, and every character carries a story waiting to be heard. Transform into your role, command the stage, and leave the audience breathless. Your character. Your story. Your unforgettable moment awaits.\nTheme: \"Reincarnation\"- The Infinite Soul Travel",
     "guidelines": [
       "Script Submission: Submit a draft of your script online for the first-round evaluation.",
       "Final Performance: Shortlisted teams will be notified via WhatsApp and will proceed to perform their script on stage on the event day.",
@@ -124,19 +133,27 @@
     "slug": "jam",
     "description": "Want to test your imagination, creativity, and potential?\nThen step into a world where one minute is all you get to make an impact!\nThink beyond the ordinary, speak without limits, and let your ideas take the spotlight.\n",
     "guidelines": [
-      "- Individual Participation",
-      "- Two-round event",
+      "Individual Participation",
+      "Two-round event",
       "If any means of malpractice is noticed, the participant will be immediately disqualified."
     ],
     "rules": [
-      "Prelims:",
-      "- The prelims will follow an on-the-spot speaking format.",
-      "- Participants will each be given a topic on which they have to speak for 1 minute.",
-      "- A preparation time of 1 minute will be provided.",
-      "Use of the internet or mobile phones during the preparation time is strictly prohibited.",
-      "Shortlisted participants will be eligible for the Finals.",
-      "Finals:",
-      "Further instructions will be provided on the spot."
+      {
+        "heading": "Prelims",
+        "items": [
+          "The prelims will follow an on-the-spot speaking format.",
+          "Participants will each be given a topic on which they have to speak for 1 minute.",
+          "A preparation time of 1 minute will be provided.",
+          "Use of the internet or mobile phones during the preparation time is strictly prohibited.",
+          "Shortlisted participants will be eligible for the Finals."
+        ]
+      },
+      {
+        "heading": "Finals",
+        "items": [
+          "Further instructions will be provided on the spot."
+        ]
+      }
     ],
     "category": "Speaking",
     "image_url": "jam",
@@ -166,12 +183,12 @@
       "Topics will be given on the spot."
     ],
     "rules": [
-      "1.The topic will be given on the spot.",
-      "2.The contestant has to write a tale on the given topic in less than 40 words.",
-      "3.Plagiarism should be strictly avoided.",
-      "4.Entries with vulgarity, profanity, or offensive/inappropriate content will be disqualified.",
-      "5.Each person is allowed to submit only one entry.",
-      "6.Time limit: 7 minutes."
+      "The topic will be given on the spot.",
+      "The contestant has to write a tale on the given topic in less than 40 words.",
+      "Plagiarism should be strictly avoided.",
+      "Entries with vulgarity, profanity, or offensive/inappropriate content will be disqualified.",
+      "Each person is allowed to submit only one entry.",
+      "Time limit: 7 minutes."
     ],
     "category": "Literary",
     "image_url": "microtale",
@@ -202,11 +219,11 @@
       "15 minutes will be provided for composing the poem."
     ],
     "rules": [
-      "1.The poem should have a minimum of 8 lines and should not exceed 16 lines.",
-      "2.Strictly avoid plagiarism.",
-      "3.Poems containing vulgarity, profanity, or offensive/inappropriate content will not be considered for evaluation.",
-      "4. A person is allowed to submit a maximum of 1 entry only.",
-      "5. Usage of ChatGPT or any AI tool will result in immediate disqualification."
+      "The poem should have a minimum of 8 lines and should not exceed 16 lines.",
+      "Strictly avoid plagiarism.",
+      "Poems containing vulgarity, profanity, or offensive/inappropriate content will not be considered for evaluation.",
+      "A person is allowed to submit a maximum of 1 entry only.",
+      "Usage of ChatGPT or any AI tool will result in immediate disqualification."
     ],
     "category": "Literary",
     "image_url": "poem",
@@ -273,12 +290,20 @@
       "The captain’s decision will be final."
     ],
     "rules": [
-      "Prelims:",
-      "Using mobile phones during the event will lead to immediate disqualification.",
-      "Preliminary rounds will be conducted strictly within the given time frame.",
-      "Only the top six teams will qualify for the finals.",
-      "Finals",
-      "Rules for the final round will be announced on the spot."
+      {
+        "heading": "Prelims",
+        "items": [
+          "Using mobile phones during the event will lead to immediate disqualification.",
+          "Preliminary rounds will be conducted strictly within the given time frame.",
+          "Only the top six teams will qualify for the finals."
+        ]
+      },
+      {
+        "heading": "Finals",
+        "items": [
+          "Rules for the final round will be announced on the spot."
+        ]
+      }
     ],
     "category": "Quiz",
     "image_url": "quiz",
@@ -317,17 +342,26 @@
       "Participants shortlisted in the Prelims will advance to the Finals."
     ],
     "rules": [
-      "Prelims:",
-      "A hypothetical scenario will be given on the spot.",
-      "Participants requiring karaoke/background audio or video must submit the required file through the designated link before the commencement of the event.",
-      "Each participant must speak for 1 minute 30 seconds",
-      "The Top 6 participants will receive a premium ticket to sail in the Cruise (Finals)",
-      "Participants who are shortlisted will advance to the Finals.",
-      "Finals:\nAll rules applicable to the Prelims shall also be followed in the Finals.",
-      "Each finalist will be assigned a random character on the spot.",
-      "Be the character, think like them, act like them and breathe life into them.",
-      "The goal is to convince the captain why YOU deserve the life jacket",
-      "Further instructions will be provided on the spot"
+      {
+        "heading": "Prelims",
+        "items": [
+          "A hypothetical scenario will be given on the spot.",
+          "Participants requiring karaoke/background audio or video must submit the required file through the designated link before the commencement of the event.",
+          "Each participant must speak for 1 minute 30 seconds",
+          "The Top 6 participants will receive a premium ticket to sail in the Cruise (Finals)",
+          "Participants who are shortlisted will advance to the Finals."
+        ]
+      },
+      {
+        "heading": "Finals",
+        "items": [
+          "All rules applicable to the Prelims shall also be followed in the Finals.",
+          "Each finalist will be assigned a random character on the spot.",
+          "Be the character, think like them, act like them and breathe life into them.",
+          "The goal is to convince the captain why YOU deserve the life jacket",
+          "Further instructions will be provided on the spot"
+        ]
+      }
     ],
     "category": "Group Discussion",
     "image_url": "shipwreck",
@@ -361,16 +395,26 @@
       "If karaoke or background audio/video is required, participants must submit it through the designated link before the event."
     ],
     "rules": [
-      "Prelims : Participants shall showcase a talent of any kind while avoiding vulgarity and offensive content.",
-      "Participants are responsible for bringing their own props, if required.",
-      "Each participant must complete their performance within 60 seconds.",
-      "Participants who are shortlisted will advance to the Finals.",
-      "Finals:\nAll rules applicable to the Prelims shall also be followed in the Finals.",
-      "Participants may perform the same skill or a different skill from the Prelims.",
-      "If the same skill is performed, the content and method of delivery must be different from the Prelims.",
-      "Participants showcasing a different skill in the Finals will be eligible for bonus points.",
-      "In case of a tie, the audience will vote through a poll to determine the best performer.",
-      "The decision of the judges will be final, subject to the event rules."
+      {
+        "heading": "Prelims",
+        "items": [
+          "Participants shall showcase a talent of any kind while avoiding vulgarity and offensive content.",
+          "Participants are responsible for bringing their own props, if required.",
+          "Each participant must complete their performance within 60 seconds.",
+          "Participants who are shortlisted will advance to the Finals."
+        ]
+      },
+      {
+        "heading": "Finals",
+        "items": [
+          "All rules applicable to the Prelims shall also be followed in the Finals.",
+          "Participants may perform the same skill or a different skill from the Prelims.",
+          "If the same skill is performed, the content and method of delivery must be different from the Prelims.",
+          "Participants showcasing a different skill in the Finals will be eligible for bonus points.",
+          "In case of a tie, the audience will vote through a poll to determine the best performer.",
+          "The decision of the judges will be final, subject to the event rules."
+        ]
+      }
     ],
     "category": "Speaking",
     "image_url": "uno-minuto",

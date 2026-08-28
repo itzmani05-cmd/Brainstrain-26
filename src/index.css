@@ -170,7 +170,15 @@
     background-repeat: no-repeat;
   }
 
+  .page-backdrop {
+    background-image: var(--page-bg-desktop);
+  }
+
   @media (max-width: 639px) {
+    .page-backdrop {
+      background-image: var(--page-bg-mobile);
+    }
+
     .hero-bg {
       background-image: linear-gradient(
           to bottom,
