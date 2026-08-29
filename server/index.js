@@ -83,7 +83,6 @@ app.post("/api/register", async (req, res) => {
       !phone ||
       !collegeName ||
       !collegeCity ||
-      !referralCode ||
       !timestamp ||
       !transactionId
     ) {
@@ -105,7 +104,7 @@ app.post("/api/register", async (req, res) => {
       phone,
       collegeName,
       collegeCity,
-      referralCode,
+      referralCode: referralCode || "",
       attendingDrama: !!attendingDrama,
       dramaLeaderName: attendingDrama ? dramaLeaderName : "",
       dramaCollegeName: attendingDrama ? dramaCollegeName : "",

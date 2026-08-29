@@ -239,7 +239,7 @@ export default function RegistrationForm() {
             </Field>
           </div>
 
-          <Field label="REFERRAL CODE">
+          <Field label="REFERRAL CODE (OPTIONAL)">
             <input
               type="text"
               className={inputClass}
