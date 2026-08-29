@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import { getEventBySlug } from "../../data/events";
+import { apiUrl } from "../../lib/api";
 
 export default function AdminEventAttendancePage() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function AdminEventAttendancePage() {
       return;
     }
 
-    fetch("/api/admin/registrations", { headers: authHeaders() })
+    fetch(apiUrl("/api/admin/registrations"), { headers: authHeaders() })
       .then((res) => {
         if (res.status === 401) {
           localStorage.removeItem("bs_admin_token");
@@ -50,7 +51,7 @@ export default function AdminEventAttendancePage() {
     );
 
     try {
-      const res = await fetch(`/api/admin/registrations/${reg._id}/attendance`, {
+      const res = await fetch(apiUrl(`/api/admin/registrations/${reg._id}/attendance`), {
         method: "PATCH",
         headers: { "Content-Type": "application/json", ...authHeaders() },
         body: JSON.stringify({ eventSlug, present: next }),

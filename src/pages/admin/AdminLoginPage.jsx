@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import NeonButton from "../../components/NeonButton";
+import { apiUrl } from "../../lib/api";
 
 export default function AdminLoginPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function AdminLoginPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/login", {
+      const res = await fetch(apiUrl("/api/admin/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),

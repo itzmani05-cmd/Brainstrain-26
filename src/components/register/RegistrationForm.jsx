@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NeonButton from "../NeonButton";
 import qrImage from "../../assets/QrPic.jpeg";
+import { apiUrl } from "../../lib/api";
 
 const PAYMENT_IMAGES = [qrImage];
 
@@ -62,7 +63,7 @@ export default function RegistrationForm() {
   }
 
   useEffect(() => {
-    fetch("/api/registration-fee")
+    fetch(apiUrl("/api/registration-fee"))
       .then((res) => res.json())
       .then((body) => setFee(body.amount))
       .catch(() => {});
@@ -85,7 +86,7 @@ export default function RegistrationForm() {
     setSubmitError("");
     setSubmitting(true);
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch(apiUrl("/api/register"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

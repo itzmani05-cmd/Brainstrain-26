@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import events from "../../data/events";
+import { apiUrl } from "../../lib/api";
 
 function StepFlag({ done, label }) {
   return (
@@ -38,7 +39,7 @@ export default function AdminDashboardPage() {
     }
 
     try {
-      const res = await fetch("/api/admin/registrations", { headers: authHeaders() });
+      const res = await fetch(apiUrl("/api/admin/registrations"), { headers: authHeaders() });
       if (res.status === 401) {
         localStorage.removeItem("bs_admin_token");
         navigate("/admin/login");
@@ -51,7 +52,7 @@ export default function AdminDashboardPage() {
       setError(err.message);
     }
 
-    fetch("/api/registration-fee")
+    fetch(apiUrl("/api/registration-fee"))
       .then((res) => res.json())
       .then((body) => {
         setFee(body.amount);
@@ -69,7 +70,7 @@ export default function AdminDashboardPage() {
     setFeeSaving(true);
     setFeeSaved(false);
     try {
-      const res = await fetch("/api/admin/registration-fee", {
+      const res = await fetch(apiUrl("/api/admin/registration-fee"), {
         method: "PUT",
         headers: { "Content-Type": "application/json", ...authHeaders() },
         body: JSON.stringify({ amount }),
@@ -92,7 +93,7 @@ export default function AdminDashboardPage() {
     );
 
     try {
-      const res = await fetch(`/api/admin/registrations/${reg._id}`, {
+      const res = await fetch(apiUrl(`/api/admin/registrations/${reg._id}`), {
         method: "PATCH",
         headers: { "Content-Type": "application/json", ...authHeaders() },
         body: JSON.stringify({ paymentVerified: next }),
