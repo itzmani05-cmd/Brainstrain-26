@@ -6,6 +6,7 @@ import cors from "cors";
 import { ObjectId } from "mongodb";
 import { getDb } from "./db.js";
 import { issueToken, requireAdmin } from "./auth.js";
+import { sendRegistrationReceivedEmail, sendApprovalEmail, sendReminderEmail } from "./email.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, ".env") });
@@ -118,6 +119,8 @@ app.post("/api/register", async (req, res) => {
       createdAt: now,
     });
 
+    await sendRegistrationReceivedEmail({ name, email, transactionId });
+
     res.json({ ok: true, id: result.insertedId });
   } catch (err) {
     console.error(err);
@@ -162,15 +165,19 @@ app.patch("/api/admin/registrations/:id", requireAdmin, async (req, res) => {
     const _id = new ObjectId(req.params.id);
     const update = { $set: { paymentVerified } };
 
-    if (paymentVerified) {
-      const existing = await db.collection("registrations").findOne({ _id });
-      if (existing && !existing.participantId) {
-        update.$set.participantId = await nextParticipantId(db);
-      }
+    const existing = await db.collection("registrations").findOne({ _id });
+    const newlyVerified = paymentVerified && !existing?.paymentVerified;
+
+    if (paymentVerified && existing && !existing.participantId) {
+      update.$set.participantId = await nextParticipantId(db);
     }
 
     await db.collection("registrations").updateOne({ _id }, update);
     const updated = await db.collection("registrations").findOne({ _id });
+
+    if (newlyVerified && updated) {
+      await sendApprovalEmail(updated);
+    }
 
     res.json({ ok: true, participantId: updated?.participantId ?? null });
   } catch (err) {
@@ -198,6 +205,23 @@ app.patch("/api/admin/registrations/:id/attendance", requireAdmin, async (req, r
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to update attendance" });
+  }
+});
+
+app.post("/api/admin/send-reminders", requireAdmin, async (req, res) => {
+  try {
+    const db = await getDb();
+    const registrations = await db
+      .collection("registrations")
+      .find({ paymentVerified: true })
+      .toArray();
+
+    await Promise.all(registrations.map((reg) => sendReminderEmail(reg)));
+
+    res.json({ ok: true, count: registrations.length });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to send reminder emails" });
   }
 });
 

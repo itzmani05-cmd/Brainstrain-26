@@ -25,6 +25,8 @@ export default function AdminDashboardPage() {
   const [feeInput, setFeeInput] = useState("");
   const [feeSaving, setFeeSaving] = useState(false);
   const [feeSaved, setFeeSaved] = useState(false);
+  const [remindersSending, setRemindersSending] = useState(false);
+  const [remindersResult, setRemindersResult] = useState("");
 
   function authHeaders() {
     const token = localStorage.getItem("bs_admin_token");
@@ -118,6 +120,24 @@ export default function AdminDashboardPage() {
     navigate("/admin/login");
   }
 
+  async function sendReminders() {
+    setRemindersSending(true);
+    setRemindersResult("");
+    try {
+      const res = await fetch(apiUrl("/api/admin/send-reminders"), {
+        method: "POST",
+        headers: authHeaders(),
+      });
+      if (!res.ok) throw new Error("Failed to send reminders");
+      const body = await res.json();
+      setRemindersResult(`Sent to ${body.count} verified registrant${body.count === 1 ? "" : "s"}.`);
+    } catch (err) {
+      setRemindersResult(err.message);
+    } finally {
+      setRemindersSending(false);
+    }
+  }
+
   return (
     <PageBackdrop>
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-32">
@@ -192,6 +212,25 @@ export default function AdminDashboardPage() {
                 {ev.name} →
               </Link>
             ))}
+          </div>
+        </div>
+
+        <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
+          <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">
+            EVENT REMINDER
+          </h2>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              disabled={remindersSending}
+              onClick={sendReminders}
+              className="rounded-full bg-bs-blue/20 px-4 py-1.5 font-body text-xs font-semibold text-bs-blue transition hover:bg-bs-blue/30 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {remindersSending ? "SENDING…" : "SEND REMINDER EMAILS"}
+            </button>
+            {remindersResult && (
+              <span className="font-body text-xs text-bs-white/70">{remindersResult}</span>
+            )}
           </div>
         </div>
 
