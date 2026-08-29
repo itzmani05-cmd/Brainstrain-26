@@ -201,6 +201,6 @@ app.patch("/api/admin/registrations/:id/attendance", requireAdmin, async (req, r
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`API server listening on http://localhost:${PORT}`);
 });
