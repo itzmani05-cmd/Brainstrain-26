@@ -26,7 +26,7 @@ async function nextParticipantId(db) {
       { upsert: true, returnDocument: "after" }
     );
   const seq = doc?.seq ?? doc?.value?.seq;
-  return `BS26-${String(seq).padStart(4, "0")}`;
+  return `BS26${String(seq).padStart(3, "0")}`;
 }
 
 app.get("/api/registration-fee", async (req, res) => {
