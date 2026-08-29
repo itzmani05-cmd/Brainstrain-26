@@ -12,6 +12,7 @@ export default function AdminEventAttendancePage() {
 
   const [registrations, setRegistrations] = useState(null);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
 
   function authHeaders() {
     const token = localStorage.getItem("bs_admin_token");
@@ -69,6 +70,14 @@ export default function AdminEventAttendancePage() {
   const presentCount =
     registrations?.filter((r) => r.attendance?.[eventSlug]).length ?? 0;
 
+  const query = search.trim().toLowerCase();
+  const filteredRegistrations = registrations?.filter((r) => {
+    if (!query) return true;
+    return [r.name, r.participantId, r.collegeName]
+      .filter(Boolean)
+      .some((field) => field.toLowerCase().includes(query));
+  });
+
   return (
     <PageBackdrop>
       <div className="mx-auto max-w-4xl px-4 pb-24 pt-32">
@@ -99,8 +108,22 @@ export default function AdminEventAttendancePage() {
         )}
 
         {registrations && registrations.length > 0 && (
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by name, ID, or college…"
+            className="mb-4 w-full rounded-lg border border-white/20 bg-black/30 px-4 py-2.5 font-body text-sm text-white placeholder:text-white/30 outline-none transition focus:border-bs-pink focus:shadow-[0_0_0_3px_rgba(209,58,170,0.25)]"
+          />
+        )}
+
+        {registrations && registrations.length > 0 && filteredRegistrations.length === 0 && (
+          <p className="font-body text-bs-white/60">No registrants match your search.</p>
+        )}
+
+        {registrations && filteredRegistrations && filteredRegistrations.length > 0 && (
           <div className="glass-card divide-y divide-white/5 rounded-[24px] p-2 sm:p-4">
-            {registrations.map((reg) => {
+            {filteredRegistrations.map((reg) => {
               const present = !!reg.attendance?.[eventSlug];
               return (
                 <div
@@ -111,6 +134,9 @@ export default function AdminEventAttendancePage() {
                     <p className="font-body text-sm font-semibold text-white">{reg.name}</p>
                     <p className="font-body text-xs text-white/50">
                       {reg.participantId} · {reg.collegeName}
+                    </p>
+                    <p className="font-body text-xs text-white/50">
+                      {reg.email} · {reg.phone}
                     </p>
                   </div>
                   <button
