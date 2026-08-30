@@ -97,6 +97,7 @@ app.post("/api/register", async (req, res) => {
     const now = new Date();
     const feeSetting = await db.collection("settings").findOne({ _id: "registrationFee" });
     const amount = feeSetting?.amount ?? DEFAULT_REGISTRATION_FEE;
+    const referral = (referralCode || "").trim();
 
     const result = await db.collection("registrations").insertOne({
       name,
@@ -104,7 +105,8 @@ app.post("/api/register", async (req, res) => {
       phone,
       collegeName,
       collegeCity,
-      referralCode: referralCode || "",
+      referralCode: referral,
+      referralCount: 0,
       attendingDrama: !!attendingDrama,
       dramaLeaderName: attendingDrama ? dramaLeaderName : "",
       dramaCollegeName: attendingDrama ? dramaCollegeName : "",
@@ -117,6 +119,12 @@ app.post("/api/register", async (req, res) => {
       paymentVerified: false,
       createdAt: now,
     });
+
+    if (referral) {
+      await db
+        .collection("registrations")
+        .updateOne({ participantId: referral }, { $inc: { referralCount: 1 } });
+    }
 
     await sendRegistrationReceivedEmail({ name, email, transactionId });
 

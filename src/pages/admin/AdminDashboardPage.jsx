@@ -254,6 +254,7 @@ export default function AdminDashboardPage() {
                   <th className="px-3 py-3">College</th>
                   <th className="px-3 py-3">Payment</th>
                   <th className="px-3 py-3">Steps</th>
+                  <th className="px-3 py-3">Referrals</th>
                   <th className="px-3 py-3">Verified</th>
                 </tr>
               </thead>
@@ -282,6 +283,7 @@ export default function AdminDashboardPage() {
                         <StepFlag done={!!reg.step2CompletedAt} label="STEP 2" />
                       </div>
                     </td>
+                    <td className="px-3 py-3 text-white/70">{reg.referralCount ?? 0}</td>
                     <td className="px-3 py-3">
                       <button
                         type="button"
