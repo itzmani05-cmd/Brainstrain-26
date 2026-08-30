@@ -1,3 +1,4 @@
+import { useState } from "react";
 import bgFooter from "../assets/ContactRightSide.png";
 
 const contacts = [
@@ -5,7 +6,62 @@ const contacts = [
   { name: "JANANI S", phone: "6381067709" },
 ];
 
+const faqs = [
+  {
+    q: "When and where is Brainstrain '26 being held?",
+    a: "Brainstrain '26 will be held on September 19, 2026, at Government College of Technology, Coimbatore.",
+  },
+  {
+    q: "How can I register for events?",
+    a: 'You can register for events through the official Brainstrain \'26 website. Click the "Register" button in the navigation menu or visit the specific event page to complete your registration.',
+  },
+  {
+    q: "Is there a participation certificate?",
+    a: "Yes. All participants will receive an e-certificate of participation.",
+  },
+  {
+    q: "How can I generate a referral code?",
+    a: "Your referral code will be automatically generated after you successfully complete your registration.",
+  },
+  {
+    q: "How many people can I share my referral code with?",
+    a: "You can share your referral code with any number of people. There is no limit on the number of people who can use your referral code.",
+  },
+  {
+    q: "How does the referral code work?",
+    a: "When someone registers using your referral code, ₹20 will be credited to your account one day before the event.",
+  },
+];
+
+function FaqItem({ faq, open, onToggle }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition duration-300 hover:border-bs-pink/40 hover:bg-white/[0.06]">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-body text-sm font-semibold tracking-wide text-white sm:text-base 4xl:px-8 4xl:py-6 4xl:text-xl"
+      >
+        {faq.q}
+        <span
+          className={`shrink-0 text-lg text-bs-pink transition-transform duration-300 ${open ? "rotate-45" : ""}`}
+          aria-hidden="true"
+        >
+          +
+        </span>
+      </button>
+      {open && (
+        <p className="px-5 pb-4 font-body text-xs leading-relaxed text-bs-white/70 sm:text-sm 4xl:px-8 4xl:pb-6 4xl:text-lg">
+          {faq.a}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function Footer() {
+  const [openIndex, setOpenIndex] = useState(null);
+
   return (
     <footer
       id="contact"
@@ -15,7 +71,23 @@ export default function Footer() {
       <div className="pointer-events-none absolute -right-40 top-0 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]" />
 
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10 4xl:max-w-[100rem] 6xl:max-w-[130rem]">
-        <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-script text-glow-white rotate-3 text-5xl text-white sm:text-6xl 4xl:text-8xl">
+            FAQ
+          </h2>
+          <div className="mt-7 space-y-3 text-left 4xl:mt-10 4xl:space-y-4">
+            {faqs.map((faq, i) => (
+              <FaqItem
+                key={faq.q}
+                faq={faq}
+                open={openIndex === i}
+                onToggle={() => setOpenIndex((cur) => (cur === i ? null : i))}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between 4xl:mt-20">
           <div className="relative w-full max-w-md md:w-[45%]">
             <div className="absolute inset-0 rounded-full bg-bs-pink/10 blur-[80px]" />
 

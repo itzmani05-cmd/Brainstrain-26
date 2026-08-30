@@ -17,6 +17,28 @@ function StepFlag({ done, label }) {
   );
 }
 
+function EmailFlag({ label, sent, error }) {
+  if (sent == null) {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 font-body text-xs text-white/30">
+        — {label}
+      </span>
+    );
+  }
+  return (
+    <span
+      title={error || undefined}
+      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-body text-xs ${
+        sent
+          ? "bg-bs-blue/20 text-bs-blue"
+          : "bg-red-500/20 text-red-400 shadow-[0_0_10px_rgba(248,113,113,0.35)]"
+      }`}
+    >
+      {sent ? "✓" : "✕"} {label}
+    </span>
+  );
+}
+
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
   const [registrations, setRegistrations] = useState(null);
@@ -27,6 +49,7 @@ export default function AdminDashboardPage() {
   const [feeSaved, setFeeSaved] = useState(false);
   const [remindersSending, setRemindersSending] = useState(false);
   const [remindersResult, setRemindersResult] = useState("");
+  const [remindersFailed, setRemindersFailed] = useState(false);
 
   function authHeaders() {
     const token = localStorage.getItem("bs_admin_token");
@@ -102,11 +125,19 @@ export default function AdminDashboardPage() {
       });
       if (!res.ok) throw new Error("Update failed");
       const body = await res.json();
-      if (body.participantId) {
-        setRegistrations((rows) =>
-          rows.map((r) => (r._id === reg._id ? { ...r, participantId: body.participantId } : r))
-        );
-      }
+      setRegistrations((rows) =>
+        rows.map((r) =>
+          r._id === reg._id
+            ? {
+                ...r,
+                ...(body.participantId ? { participantId: body.participantId } : {}),
+                ...(body.emailSent != null
+                  ? { approvalEmailSent: body.emailSent, approvalEmailError: body.emailError }
+                  : {}),
+              }
+            : r
+        )
+      );
     } catch {
       // revert on failure
       setRegistrations((rows) =>
@@ -123,6 +154,7 @@ export default function AdminDashboardPage() {
   async function sendReminders() {
     setRemindersSending(true);
     setRemindersResult("");
+    setRemindersFailed(false);
     try {
       const res = await fetch(apiUrl("/api/admin/send-reminders"), {
         method: "POST",
@@ -130,8 +162,16 @@ export default function AdminDashboardPage() {
       });
       if (!res.ok) throw new Error("Failed to send reminders");
       const body = await res.json();
-      setRemindersResult(`Sent to ${body.count} verified registrant${body.count === 1 ? "" : "s"}.`);
+      const sent = body.count - body.failed;
+      setRemindersFailed(body.failed > 0);
+      setRemindersResult(
+        body.failed > 0
+          ? `Sent to ${sent} of ${body.count} registrants — ${body.failed} failed. See the Emails column for details.`
+          : `Sent to ${body.count} verified registrant${body.count === 1 ? "" : "s"}.`
+      );
+      await load();
     } catch (err) {
+      setRemindersFailed(true);
       setRemindersResult(err.message);
     } finally {
       setRemindersSending(false);
@@ -229,7 +269,11 @@ export default function AdminDashboardPage() {
               {remindersSending ? "SENDING…" : "SEND REMINDER EMAILS"}
             </button>
             {remindersResult && (
-              <span className="font-body text-xs text-bs-white/70">{remindersResult}</span>
+              <span
+                className={`font-body text-xs ${remindersFailed ? "text-red-400" : "text-bs-white/70"}`}
+              >
+                {remindersResult}
+              </span>
             )}
           </div>
         </div>
@@ -255,6 +299,7 @@ export default function AdminDashboardPage() {
                   <th className="px-3 py-3">Payment</th>
                   <th className="px-3 py-3">Steps</th>
                   <th className="px-3 py-3">Referrals</th>
+                  <th className="px-3 py-3">Emails</th>
                   <th className="px-3 py-3">Verified</th>
                 </tr>
               </thead>
@@ -284,6 +329,29 @@ export default function AdminDashboardPage() {
                       </div>
                     </td>
                     <td className="px-3 py-3 text-white/70">{reg.referralCount ?? 0}</td>
+                    <td className="px-3 py-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        <EmailFlag
+                          label="RECEIVED"
+                          sent={reg.registrationEmailSent}
+                          error={reg.registrationEmailError}
+                        />
+                        {reg.paymentVerified && (
+                          <EmailFlag
+                            label="APPROVAL"
+                            sent={reg.approvalEmailSent}
+                            error={reg.approvalEmailError}
+                          />
+                        )}
+                        {reg.reminderEmailSent != null && (
+                          <EmailFlag
+                            label="REMINDER"
+                            sent={reg.reminderEmailSent}
+                            error={reg.reminderEmailError}
+                          />
+                        )}
+                      </div>
+                    </td>
                     <td className="px-3 py-3">
                       <button
                         type="button"

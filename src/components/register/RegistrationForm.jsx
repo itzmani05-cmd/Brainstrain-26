@@ -14,9 +14,24 @@ const labelClass = "mb-1.5 block font-body text-xs tracking-[0.1em] text-bs-whit
 
 const STORAGE_KEY = "bs_registration_draft";
 
+const EMPTY_DATA = {
+  name: "",
+  email: "",
+  phone: "",
+  collegeName: "",
+  collegeCity: "",
+  referralCode: "",
+  attendingDrama: false,
+  dramaLeaderName: "",
+  dramaCollegeName: "",
+  joinedWhatsapp: false,
+  timestamp: "",
+  transactionId: "",
+};
+
 function loadDraft() {
   try {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY));
+    return JSON.parse(localStorage.getItem(STORAGE_KEY));
   } catch {
     return null;
   }
@@ -34,28 +49,11 @@ function Field({ label, children }) {
 export default function RegistrationForm() {
   const draft = loadDraft();
   const [step, setStep] = useState(draft?.step ?? 1);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(draft?.submitted ?? false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [fee, setFee] = useState(null);
-  const [data, setData] = useState(
-    draft?.data
-      ? draft.data
-      : {
-      name: "",
-      email: "",
-      phone: "",
-      collegeName: "",
-      collegeCity: "",
-      referralCode: "",
-      attendingDrama: false,
-      dramaLeaderName: "",
-      dramaCollegeName: "",
-      joinedWhatsapp: false,
-      timestamp: "",
-      transactionId: "",
-        }
-  );
+  const [data, setData] = useState(draft?.data ? draft.data : EMPTY_DATA);
 
   function update(field, value) {
     setData((d) => ({ ...d, [field]: value }));
@@ -69,8 +67,16 @@ export default function RegistrationForm() {
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ step, data }));
-  }, [step, data]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ step, data, submitted }));
+  }, [step, data, submitted]);
+
+  function applyAnother() {
+    localStorage.removeItem(STORAGE_KEY);
+    setData(EMPTY_DATA);
+    setStep(1);
+    setSubmitError("");
+    setSubmitted(false);
+  }
 
   function handleStep1Submit(e) {
     e.preventDefault();
@@ -94,7 +100,6 @@ export default function RegistrationForm() {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error || "Something went wrong. Please try again.");
       }
-      sessionStorage.removeItem(STORAGE_KEY);
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err.message);
@@ -137,6 +142,12 @@ export default function RegistrationForm() {
               </a>
             </p>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <NeonButton type="button" color="blue" onClick={applyAnother}>
+            APPLY ANOTHER
+          </NeonButton>
         </div>
       </div>
     );

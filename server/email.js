@@ -10,15 +10,18 @@ async function send({ to, subject, html }) {
   try {
     resend ??= new Resend(process.env.RESEND_API_KEY);
     const fromEmail = process.env.FROM_EMAIL || "onboarding@resend.dev";
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `Brainstrain '26 <${fromEmail}>`,
       to,
       subject,
       html,
       replyTo: process.env.FROM_EMAIL,
     });
+    if (error) throw new Error(error.message || "Resend rejected the email");
+    return { sent: true, error: null };
   } catch (err) {
     console.error(`Failed to send email to ${to}:`, err);
+    return { sent: false, error: err.message || "Failed to send email" };
   }
 }
 

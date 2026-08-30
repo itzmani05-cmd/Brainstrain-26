@@ -126,9 +126,18 @@ app.post("/api/register", async (req, res) => {
         .updateOne({ participantId: referral }, { $inc: { referralCount: 1 } });
     }
 
-    await sendRegistrationReceivedEmail({ name, email, transactionId });
+    const emailResult = await sendRegistrationReceivedEmail({ name, email, transactionId });
+    await db.collection("registrations").updateOne(
+      { _id: result.insertedId },
+      {
+        $set: {
+          registrationEmailSent: emailResult.sent,
+          registrationEmailError: emailResult.error,
+        },
+      }
+    );
 
-    res.json({ ok: true, id: result.insertedId });
+    res.json({ ok: true, id: result.insertedId, emailSent: emailResult.sent });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to save registration" });
@@ -180,13 +189,29 @@ app.patch("/api/admin/registrations/:id", requireAdmin, async (req, res) => {
     }
 
     await db.collection("registrations").updateOne({ _id }, update);
-    const updated = await db.collection("registrations").findOne({ _id });
+    let updated = await db.collection("registrations").findOne({ _id });
 
+    let approvalEmail = null;
     if (newlyVerified && updated) {
-      await sendApprovalEmail(updated);
+      approvalEmail = await sendApprovalEmail(updated);
+      await db.collection("registrations").updateOne(
+        { _id },
+        {
+          $set: {
+            approvalEmailSent: approvalEmail.sent,
+            approvalEmailError: approvalEmail.error,
+          },
+        }
+      );
+      updated = await db.collection("registrations").findOne({ _id });
     }
 
-    res.json({ ok: true, participantId: updated?.participantId ?? null });
+    res.json({
+      ok: true,
+      participantId: updated?.participantId ?? null,
+      emailSent: approvalEmail ? approvalEmail.sent : null,
+      emailError: approvalEmail ? approvalEmail.error : null,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to update registration" });
@@ -223,9 +248,25 @@ app.post("/api/admin/send-reminders", requireAdmin, async (req, res) => {
       .find({ paymentVerified: true })
       .toArray();
 
-    await Promise.all(registrations.map((reg) => sendReminderEmail(reg)));
+    const results = await Promise.all(
+      registrations.map(async (reg) => {
+        const result = await sendReminderEmail(reg);
+        await db.collection("registrations").updateOne(
+          { _id: reg._id },
+          {
+            $set: {
+              reminderEmailSent: result.sent,
+              reminderEmailError: result.error,
+              reminderEmailSentAt: new Date(),
+            },
+          }
+        );
+        return result;
+      })
+    );
 
-    res.json({ ok: true, count: registrations.length });
+    const failed = results.filter((r) => !r.sent).length;
+    res.json({ ok: true, count: registrations.length, failed });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to send reminder emails" });
