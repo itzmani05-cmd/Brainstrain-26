@@ -8,7 +8,11 @@ const EVENT_DATE = new Date("2026-09-19T00:00:00");
 export default function HeroSection() {
   return (
     <section
+<<<<<<< HEAD
       className="hero-bg relative flex min-h-0 flex-col items-center justify-start overflow-hidden px-4 pb-12 pt-[clamp(4.5rem,13vh,7rem)] text-center sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
+=======
+      className="hero-bg relative flex min-h-0 flex-col items-center justify-start overflow-hidden px-4 pb-6 pt-12 text-center sm:min-h-0 sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
+>>>>>>> 91ae7ea267c92e22275717cf73349db22824e32f
       style={{ "--hero-bg-url": `url(${bgHero})` }}
     >
       <p
@@ -18,14 +22,14 @@ export default function HeroSection() {
         THE LITERARY AND DEBATING SOCIETY
       </p>
       <p
-        className="animate-hero-in mb-10 mt-2 font-body text-xs tracking-[0.2em] text-white sm:text-base lg:text-lg 2xl:text-xl 4xl:text-2xl 6xl:text-3xl"
+        className="animate-hero-in mb-4 mt-2 font-body text-xs tracking-[0.2em] text-white sm:mb-10 sm:text-base sm:tracking-[0.3em] lg:text-lg 2xl:text-xl 4xl:text-2xl 6xl:text-3xl"
         style={{ animationDelay: "80ms" }}
       >
         PRESENTS
       </p>
 
       <div
-        className="animate-hero-in relative mt-3 w-fit max-w-[92vw] mx-auto px-6 py-6 sm:px-8 sm:py-4 lg:px-14 lg:py-5 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
+        className="animate-hero-in relative mx-auto mt-1 w-fit max-w-[92vw] px-3 py-4 sm:mt-3 sm:px-8 sm:py-4 lg:px-14 lg:py-5 2xl:px-20 2xl:py-8 4xl:px-28 4xl:py-12 6xl:px-40 6xl:py-16"
         style={{ animationDelay: "180ms" }}
       >
         <div
@@ -38,7 +42,7 @@ export default function HeroSection() {
               "repeating-linear-gradient(to bottom, black 0px, black 5px, transparent 5px, transparent 11px)",
           }}
         />
-        <h1 className="font-script -mt-12 text-glow-white relative -rotate-13 text-[clamp(2.75rem,17vw,4.75rem)] leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:text-6xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
+        <h1 className="font-script relative -mt-6 -rotate-13 text-glow-white text-[clamp(2.75rem,17vw,4.75rem)] leading-none text-white drop-shadow-[1px_5px_4px_rgba(0,0,0,0.8)] sm:-mt-12 sm:text-6xl md:text-[8rem] lg:text-[9rem] 2xl:text-[11rem] 4xl:text-[14rem] 6xl:text-[18rem]">
           Brainstrain
           <span className="-ml-[0.9em] -pt-15 text-[1em] inline-block translate-y-[0.8em] text-white sm:text-6xl md:text-[4rem] lg:text-[5rem] 2xl:text-[6rem] 4xl:text-[8rem] 6xl:text-[10rem]">
             &lsquo;26
@@ -61,12 +65,12 @@ export default function HeroSection() {
         </span>
       </div>
 
-      <div className="animate-hero-in mt-6 lg:mt-6 2xl:mt-14 4xl:mt-20 6xl:mt-28" style={{ animationDelay: "380ms" }}>
+      <div className="animate-hero-in mt-4 lg:mt-6 2xl:mt-14 4xl:mt-20 6xl:mt-28" style={{ animationDelay: "380ms" }}>
         <CountdownTimer target={EVENT_DATE} />
       </div>
 
       <div
-        className="animate-hero-in mt-10 flex w-full flex-col gap-4 sm:w-auto sm:flex-row lg:mt-10 lg:gap-6 2xl:mt-16 2xl:gap-8 4xl:mt-24 4xl:gap-10 6xl:mt-32 6xl:gap-14"
+        className="animate-hero-in mt-5 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row lg:gap-6 2xl:mt-16 2xl:gap-8 4xl:mt-24 4xl:gap-10 6xl:mt-32 6xl:gap-14"
         style={{ animationDelay: "560ms" }}
       >
         <NeonButton

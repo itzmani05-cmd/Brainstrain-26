@@ -19,6 +19,7 @@
   --breakpoint-4xl: 160rem;
   --breakpoint-5xl: 192rem;
   --breakpoint-6xl: 240rem;
+  --breakpoint-7xl: 320rem;
 }
 
 @layer base {
@@ -169,10 +170,19 @@
     background-repeat: no-repeat;
   }
 
+  .page-backdrop {
+    background-image: var(--page-bg-desktop);
+  }
+
   @media (max-width: 639px) {
+    .page-backdrop {
+      background-image: var(--page-bg-mobile);
+    }
+
     .hero-bg {
       background-image: linear-gradient(
           to bottom,
+<<<<<<< HEAD
           transparent 0%,
           transparent 58%,
           rgba(23, 15, 36, 0.35) 76%,
@@ -182,6 +192,16 @@
         var(--hero-bg-url);
       background-size: 100% 100%, cover;
       background-position: center top, center top;
+=======
+          rgba(5, 3, 10, 0.02) 0%,
+          rgba(5, 3, 10, 0.04) 55%,
+          rgba(12, 7, 20, 0.22) 78%,
+          rgba(12, 7, 20, 0.82) 100%
+        ),
+        var(--hero-bg-url);
+      background-size: 100% 100%, cover;
+      background-position: center, center;
+>>>>>>> 91ae7ea267c92e22275717cf73349db22824e32f
       background-repeat: no-repeat, no-repeat;
     }
   }

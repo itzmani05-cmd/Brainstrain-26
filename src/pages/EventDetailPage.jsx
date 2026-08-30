@@ -15,7 +15,7 @@ export default function EventDetailPage() {
   return (
     <PublicLayout>
       <PageBackdrop bgPosition="15% 1%">
-        <div className="mx-auto max-w-3xl px-4 pb-24 pt-28">
+        <div className="mx-auto max-w-3xl px-4 pb-24 pt-28 4xl:max-w-5xl 6xl:max-w-6xl 7xl:max-w-[90rem]">
           {!event && <EventNotFound />}
 
           {event && (

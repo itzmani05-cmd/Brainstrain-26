@@ -1,5 +1,4 @@
 import bgFooter from "../assets/ContactRightSide.png";
-import trianglesFrame from "../assets/contact/Triangles.png";
 
 const contacts = [
   { name: "SARAVANAVEL C", phone: "9171098222" },
@@ -8,69 +7,90 @@ const contacts = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-bs-black pb-10 pt-24 sm:pt-32">
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
-        <div className="w-auto w-full max-w-sm text-center sm:max-w-md md:mx-0 md:ml-auto md:mr-[4%] md:max-w-lg md:text-left">
-          <h2 className="font-script text-glow-white -rotate-6 text-5xl text-white sm:text-6xl">
-            Contact
-          </h2>
+    <footer
+      id="contact"
+      className="relative overflow-hidden bg-bs-black py-16 sm:py-20 4xl:py-28 6xl:py-36 7xl:py-44"
+    >
+      <div className="pointer-events-none absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-bs-pink/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-40 top-0 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]" />
 
-          <div className="relative mx-auto mt-2 aspect-[677/500] w-full sm:mt-1 sm:aspect-[677/882]">
-          
+      <div className="relative mx-auto max-w-6xl px-6 sm:px-10 4xl:max-w-[100rem] 6xl:max-w-[130rem]">
+        <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between">
+          <div className="relative w-full max-w-md md:w-[45%]">
+            <div className="absolute inset-0 rounded-full bg-bs-pink/10 blur-[80px]" />
 
-            <div className="absolute left-1/2 top-[46%] z-[5] w-[58%] -translate-x-1/2 -translate-y-1/2 text-center sm:left-[44%]">
-              <div className="flex flex-col items-center gap-3">
-                {contacts.map((c) => (
-                  <div key={c.name} className="flex flex-col items-center gap-0.5">
-                    <p className="font-body text-sm font-semibold text-white sm:text-lg md:text-xl">
-                      {c.name}
-                    </p>
-                    <a
-                      href={`tel:+91${c.phone}`}
-                      className="font-body text-xs text-bs-white/80 transition hover:text-bs-pink sm:text-sm md:text-base"
-                    >
-                      {c.phone}
-                    </a>
-                  </div>
-                ))}
-              </div>
+            <img
+              src={bgFooter}
+              alt=""
+              aria-hidden="true"
+              className="relative mx-auto w-full max-w-sm object-contain mix-blend-lighten 4xl:max-w-lg 6xl:max-w-xl"
+            />
+          </div>
 
-              <div className="mt-8 flex items-center justify-center gap-3 sm:mt-10">
-                <a
-                  href="https://www.instagram.com/literary_and_debating_society?igsi=MXEzcjIwNHl4azQ1MA=="
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="neon-border-pink flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white transition hover:scale-110 sm:h-9 sm:w-9"
+          <div className="relative w-full max-w-lg text-center md:w-[50%] md:text-left 4xl:max-w-2xl 6xl:max-w-3xl">
+            <h2 className="font-script text-glow-white -rotate-3 text-5xl text-white sm:text-6xl 4xl:text-8xl 6xl:text-9xl">
+              Contact
+            </h2>
+
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:gap-5 4xl:mt-10 4xl:gap-8">
+              {contacts.map((contact) => (
+                <div
+                  key={contact.name}
+                  className="group flex-1 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 backdrop-blur-sm transition duration-300 hover:border-bs-pink/40 hover:bg-white/[0.06] 4xl:px-8 4xl:py-6"
                 >
-                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor">
-                    <path d="M12 2.2c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.94 3.9 2.4 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2Zm0 3.9a5.9 5.9 0 1 0 0 11.8 5.9 5.9 0 0 0 0-11.8Zm0 9.73a3.83 3.83 0 1 1 0-7.66 3.83 3.83 0 0 1 0 7.66Zm6.13-9.96a1.38 1.38 0 1 1-2.76 0 1.38 1.38 0 0 1 2.76 0Z" />
-                  </svg>
-                </a>
-                <a
-                  href="mailto:litsociety.gct@gmail.com"
-                  aria-label="Email"
-                  className="neon-border-blue flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white transition hover:scale-110 sm:h-9 sm:w-9"
+                  <p className="font-body text-sm font-semibold tracking-wide text-white sm:text-base 4xl:text-xl 6xl:text-2xl">
+                    {contact.name}
+                  </p>
+
+                  <a
+                    href={`tel:+91${contact.phone}`}
+                    className="mt-1 block font-body text-xs text-bs-white/60 transition hover:text-bs-pink sm:text-sm 4xl:text-lg 6xl:text-xl"
+                  >
+                    +91 {contact.phone}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex justify-center gap-3 md:justify-start 4xl:mt-10 4xl:gap-5">
+              <a
+                href="https://www.instagram.com/literary_and_debating_society?igsi=MXEzcjIwNHl4azQ1MA=="
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="neon-border-pink flex h-10 w-10 items-center justify-center rounded-lg text-white transition duration-300 hover:-translate-y-1 hover:scale-110 4xl:h-16 4xl:w-16 6xl:h-20 6xl:w-20"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-[18px] w-[18px] 4xl:h-7 4xl:w-7 6xl:h-9 6xl:w-9"
+                  fill="currentColor"
                 >
-                  <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor">
-                    <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2.3 7.3 6.03a.8.8 0 0 0 1 0l7.3-6.02a.6.6 0 0 0-.3-.31H4.5a.6.6 0 0 0-.3.3Z" />
-                  </svg>
-                </a>
-              </div>
+                  <path d="M12 2.2c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.94 3.9 2.4 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2Zm0 3.9a5.9 5.9 0 1 0 0 11.8 5.9 5.9 0 0 0 0-11.8Zm0 9.73a3.83 3.83 0 1 1 0-7.66 3.83 3.83 0 0 1 0 7.66Zm6.13-9.96a1.38 1.38 0 1 1-2.76 0 1.38 1.38 0 0 1 2.76 0Z" />
+                </svg>
+              </a>
+
+              <a
+                href="mailto:litsociety.gct@gmail.com"
+                aria-label="Email"
+                className="neon-border-blue flex h-10 w-10 items-center justify-center rounded-lg text-white transition duration-300 hover:-translate-y-1 hover:scale-110 4xl:h-16 4xl:w-16 6xl:h-20 6xl:w-20"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-[18px] w-[18px] 4xl:h-7 4xl:w-7 6xl:h-9 6xl:w-9"
+                  fill="currentColor"
+                >
+                  <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2.3 7.3 6.03a.8.8 0 0 0 1 0l7.3-6.02a.6.6 0 0 0-.3-.31H4.5a.6.6 0 0 0-.3.3Z" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
 
-        <img
-          src={bgFooter}
-          alt=""
-          aria-hidden
-          className="pointer-events-none relative mx-auto mt-4 block w-[85%] max-w-sm mix-blend-lighten sm:w-[70%] sm:max-w-md md:absolute md:inset-y-0 md:left-0 md:top-1/2 md:mx-0 md:mt-0 md:w-[42%] md:max-w-xl md:-translate-y-1/2"
-        />
-
-        <p className="relative mt-0 w-full text-right font-body text-sm tracking-[0.3em] text-bs-white/70">
-          POWERED BY THE LITERARY AND DEBATING SOCIETY
-        </p>
+        <div className="mt-12 border-t border-white/10 pt-5 text-center 4xl:mt-16 4xl:pt-8">
+          <p className="font-body text-[10px] uppercase tracking-[0.25em] text-bs-white/40 sm:text-xs 4xl:text-base 6xl:text-lg">
+            Powered by the Literary and Debating Society
+          </p>
+        </div>
       </div>
     </footer>
   );
