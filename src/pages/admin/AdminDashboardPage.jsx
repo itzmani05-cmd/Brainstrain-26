@@ -4,6 +4,7 @@ import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import events from "../../data/events";
 import { apiUrl } from "../../lib/api";
+import useSeo, { SITE_NAME } from "../../hooks/useSeo";
 
 function StepFlag({ done, label }) {
   return (
@@ -40,6 +41,8 @@ function EmailFlag({ label, sent, error }) {
 }
 
 export default function AdminDashboardPage() {
+  useSeo({ title: `Admin | ${SITE_NAME}`, path: "/admin", noindex: true });
+
   const navigate = useNavigate();
   const [registrations, setRegistrations] = useState(null);
   const [error, setError] = useState("");

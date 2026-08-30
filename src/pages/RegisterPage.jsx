@@ -3,8 +3,16 @@ import PageBackdrop from "../components/PageBackdrop";
 import ScriptHeading from "../components/ScriptHeading";
 import Reveal from "../components/Reveal";
 import RegistrationForm from "../components/register/RegistrationForm";
+import useSeo, { SITE_NAME } from "../hooks/useSeo";
 
 export default function RegisterPage() {
+  useSeo({
+    title: `Register | ${SITE_NAME}`,
+    description:
+      "Register for Brainstrain '26 events — GCT Coimbatore's inter-collegiate literary fest on September 19, 2026.",
+    path: "/register",
+  });
+
   return (
     <PublicLayout>
       <PageBackdrop>

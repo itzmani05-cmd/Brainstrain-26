@@ -5,8 +5,16 @@ import TeamRow from "../components/TeamRow";
 import Reveal from "../components/Reveal";
 import { teamSections } from "../data/teamData";
 import teamPhoto from "../assets/Team-lds.png";
+import useSeo, { SITE_NAME } from "../hooks/useSeo";
 
 export default function TeamPage() {
+  useSeo({
+    title: `Our Team | ${SITE_NAME}`,
+    description:
+      "Meet the team behind Brainstrain '26 — the Literary and Debating Society, GCT Coimbatore.",
+    path: "/team",
+  });
+
   return (
     <PublicLayout>
       <PageBackdrop bgPosition="15% 1%">

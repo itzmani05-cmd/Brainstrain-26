@@ -7,10 +7,51 @@ import EventDescription from "../components/events/EventDescription";
 import EventInfoList from "../components/events/EventInfoList";
 import EventMetaFooter from "../components/events/EventMetaFooter";
 import { getEventBySlug } from "../data/events";
+import useSeo, { SITE_NAME, SITE_URL } from "../hooks/useSeo";
 
 export default function EventDetailPage() {
   const { slug } = useParams();
   const event = getEventBySlug(slug);
+
+  useSeo({
+    title: event ? `${event.name} | ${SITE_NAME}` : `Event Not Found | ${SITE_NAME}`,
+    description: event
+      ? event.description
+      : "This event doesn't exist. Browse all Brainstrain '26 events.",
+    path: `/events/${slug}`,
+    noindex: !event,
+    jsonLd: event
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          name: `${event.name} — ${SITE_NAME}`,
+          description: event.description,
+          startDate: "2026-09-19",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          eventStatus: "https://schema.org/EventScheduled",
+          location: {
+            "@type": "Place",
+            name: "Government College of Technology, Coimbatore",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Coimbatore",
+              addressRegion: "Tamil Nadu",
+              addressCountry: "IN",
+            },
+          },
+          image: [`${SITE_URL}/og-image.webp`],
+          organizer: {
+            "@type": "Organization",
+            name: "Literary and Debating Society, GCT Coimbatore",
+            url: SITE_URL,
+          },
+          url: `${SITE_URL}/events/${event.slug}`,
+          ...(event.registration_open
+            ? { offers: { "@type": "Offer", url: `${SITE_URL}/register`, availability: "https://schema.org/InStock" } }
+            : {}),
+        }
+      : null,
+  });
 
   return (
     <PublicLayout>

@@ -2,8 +2,16 @@ import PublicLayout from "../components/PublicLayout";
 import PageBackdrop from "../components/PageBackdrop";
 import ScriptHeading from "../components/ScriptHeading";
 import NeonButton from "../components/NeonButton";
+import useSeo, { SITE_NAME } from "../hooks/useSeo";
 
 export default function NotFoundPage() {
+  useSeo({
+    title: `Page Not Found | ${SITE_NAME}`,
+    description: "The page you're looking for doesn't exist.",
+    path: "/404",
+    noindex: true,
+  });
+
   return (
     <PublicLayout>
       <PageBackdrop>

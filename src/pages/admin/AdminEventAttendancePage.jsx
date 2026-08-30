@@ -4,11 +4,18 @@ import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import { getEventBySlug } from "../../data/events";
 import { apiUrl } from "../../lib/api";
+import useSeo, { SITE_NAME } from "../../hooks/useSeo";
 
 export default function AdminEventAttendancePage() {
   const navigate = useNavigate();
   const { eventSlug } = useParams();
   const event = getEventBySlug(eventSlug);
+
+  useSeo({
+    title: `${event ? event.name : eventSlug} Attendance | ${SITE_NAME}`,
+    path: `/admin/${eventSlug}`,
+    noindex: true,
+  });
 
   const [registrations, setRegistrations] = useState(null);
   const [error, setError] = useState("");

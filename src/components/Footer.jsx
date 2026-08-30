@@ -1,36 +1,10 @@
 import { useState } from "react";
 import bgFooter from "../assets/ContactRightSide.png";
+import faqs from "../data/faqs";
 
 const contacts = [
   { name: "SARAVANAVEL C", phone: "9171098222" },
   { name: "JANANI S", phone: "6381067709" },
-];
-
-const faqs = [
-  {
-    q: "When and where is Brainstrain '26 being held?",
-    a: "Brainstrain '26 will be held on September 19, 2026, at Government College of Technology, Coimbatore.",
-  },
-  {
-    q: "How can I register for events?",
-    a: 'You can register for events through the official Brainstrain \'26 website. Click the "Register" button in the navigation menu or visit the specific event page to complete your registration.',
-  },
-  {
-    q: "Is there a participation certificate?",
-    a: "Yes. All participants will receive an e-certificate of participation.",
-  },
-  {
-    q: "How can I generate a referral code?",
-    a: "Your referral code will be automatically generated after you successfully complete your registration.",
-  },
-  {
-    q: "How many people can I share my referral code with?",
-    a: "You can share your referral code with any number of people. There is no limit on the number of people who can use your referral code.",
-  },
-  {
-    q: "How does the referral code work?",
-    a: "When someone registers using your referral code, ₹10 will be credited to your account one day before the event.",
-  },
 ];
 
 function FaqItem({ faq, open, onToggle }) {
@@ -63,10 +37,7 @@ export default function Footer() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <footer
-      id="contact"
-      className="relative overflow-hidden bg-bs-black py-16 sm:py-20 4xl:py-28 6xl:py-36 7xl:py-44"
-    >
+    <footer className="relative overflow-hidden bg-bs-black py-16 sm:py-20 4xl:py-28 6xl:py-36 7xl:py-44">
       <div className="pointer-events-none absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-bs-pink/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 top-0 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]" />
 
@@ -99,7 +70,10 @@ export default function Footer() {
             />
           </div>
 
-          <div className="relative w-full max-w-lg text-center md:w-[50%] md:text-left 4xl:max-w-2xl 6xl:max-w-3xl">
+          <div
+            id="contact"
+            className="relative w-full max-w-lg scroll-mt-28 text-center md:w-[50%] md:text-left 4xl:max-w-2xl 6xl:max-w-3xl"
+          >
             <h2 className="font-script text-glow-white -rotate-3 text-5xl text-white sm:text-6xl 4xl:text-8xl 6xl:text-9xl">
               Contact
             </h2>

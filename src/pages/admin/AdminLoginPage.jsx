@@ -4,8 +4,11 @@ import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import NeonButton from "../../components/NeonButton";
 import { apiUrl } from "../../lib/api";
+import useSeo, { SITE_NAME } from "../../hooks/useSeo";
 
 export default function AdminLoginPage() {
+  useSeo({ title: `Admin Login | ${SITE_NAME}`, path: "/admin/login", noindex: true });
+
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
