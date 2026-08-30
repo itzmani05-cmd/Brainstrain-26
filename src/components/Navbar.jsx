@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import logo from "../assets/BS-logo-navbar.png";
 
@@ -12,7 +12,17 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const linkClass = ({ isActive }) =>
     `font-body text-base tracking-wide transition-colors 4xl:text-xl 6xl:text-2xl 7xl:text-3xl ${
@@ -21,10 +31,15 @@ export default function Navbar() {
   const visibleLinks = links.filter((l) => l.to !== "/#contact" || pathname === "/");
   const solidBg =
     pathname.startsWith("/team") || pathname.startsWith("/events") || pathname.startsWith("/register");
+  const navBg = solidBg
+    ? "bg-bs-black"
+    : scrolled
+      ? "bg-bs-black/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
+      : "bg-transparent";
 
   return (
     <header
-      className={`animate-nav-in fixed top-0 left-0 z-50 w-full ${solidBg ? "bg-bs-black" : ""}`}
+      className={`animate-nav-in fixed top-0 left-0 z-50 w-full transition-colors duration-300 ${navBg}`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 4xl:max-w-[120rem] 4xl:px-12 4xl:py-6 6xl:max-w-[160rem] 6xl:px-20 6xl:py-8 7xl:max-w-[200rem] 7xl:px-28 7xl:py-10">
         <NavLink to="/" className="group flex min-w-0 items-center gap-2 sm:gap-3" onClick={() => setOpen(false)}>

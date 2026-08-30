@@ -14,7 +14,6 @@ import varshini from "../assets/team/varshini.jpeg";
 import premkumar from "../assets/team/premkumar.png";
 import sakthiPriya from "../assets/team/sakthi-priya.jpg";
 import gokulaKrishnan from "../assets/team/gokula-krishnan.jpg";
-import manikandanM from "../assets/team/manikandan-m.jpeg";
 import maliniR from "../assets/team/malini-r.jpeg";
 
 export const teamSections = [
@@ -37,7 +36,6 @@ export const teamSections = [
       { name: "Sanjeev Krishna", role: "Web Developer", photo: sanjeevKrishna },
       { name: "Gokula Krishnan M", role: "Web Developer", photo: gokulaKrishnan, focus: "center 25%" },
       { name: "Malini R", role: "Web Developer", photo: maliniR, focus: "center 25%" },
-      { name: "Manikandan M", role: "Web Developer" , photo: manikandanM, focus: "center" }
     ],
   },
   {
