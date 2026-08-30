@@ -48,6 +48,8 @@ export function sendApprovalEmail(reg) {
       <p>Thank you for registering for BrainStrain '26! 🎉</p>
       <p>We're happy to confirm that your payment has been successfully verified, and your registration is now complete.</p>
       <p>🧠 Your BrainStrain '26 ID: <strong>${reg.participantId}</strong></p>
+      <p>Your BS ID is also your referral code! You can share it with your friends and invite them to register for BrainStrain '26.</p>
+      <p>You can share your referral code with multiple people — there's no limit! If someone registers using your referral code, ₹20 will be credited to your account one day before the event. 💰</p>
       <p>We're super excited to have you join us and can't wait to see you at BrainStrain '26! Get ready for an exciting experience filled with challenges, creativity, and a whole lot of brainpower. 🚀</p>
       <p>Further details and updates will be shared with you soon.</p>
       <p>Once again, thank you for being a part of BrainStrain '26. See you there! 💙</p>

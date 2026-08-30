@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "How does the referral code work?",
-    a: "When someone registers using your referral code, ₹20 will be credited to your account one day before the event.",
+    a: "When someone registers using your referral code, ₹10 will be credited to your account one day before the event.",
   },
 ];
 

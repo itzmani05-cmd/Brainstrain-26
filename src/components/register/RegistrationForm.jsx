@@ -130,15 +130,15 @@ export default function RegistrationForm() {
           </h3>
           <div className="mt-3 flex flex-col gap-1 font-body text-sm text-bs-white/80 4xl:text-lg">
             <p>
-              Saravanavel C ·{" "}
-              <a href="tel:+919171098222" className="hover:text-bs-pink">
-                9171098222
+              Maharaja ·{" "}
+              <a href="tel:+918939811573" className="hover:text-bs-pink">
+                89398 11573
               </a>
             </p>
             <p>
-              Janani S ·{" "}
-              <a href="tel:+916381067709" className="hover:text-bs-pink">
-                6381067709
+              Muthu Pavithra ·{" "}
+              <a href="tel:+919043205113" className="hover:text-bs-pink">
+                90432 05113
               </a>
             </p>
           </div>
