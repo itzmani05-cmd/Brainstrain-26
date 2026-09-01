@@ -61,7 +61,7 @@ npm run preview
 
 - Each page sets its own title, meta description, canonical URL, Open Graph/Twitter tags, and
   JSON-LD via the `useSeo` hook (`src/hooks/useSeo.js`) — see any file in `src/pages` for usage.
-  The production URL (`https://ldsgct.org`) is hardcoded in that hook; update it there if the
+  The production URL (`https://www.ldsgct.org`) is hardcoded in that hook; update it there if the
   domain changes.
 - `public/sitemap.xml` is generated from `src/data/events.json` by `scripts/generate-sitemap.js`,
   which runs automatically before every `npm run build` (via the `prebuild` npm script). It's

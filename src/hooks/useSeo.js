@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export const SITE_NAME = "Brainstrain '26";
-export const SITE_URL = "https://ldsgct.org";
+export const SITE_URL = "https://www.ldsgct.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.webp`;
 
 function setMetaTag(attr, key, content) {

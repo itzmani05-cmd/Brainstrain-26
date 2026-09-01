@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import events from "../src/data/events.json" with { type: "json" };
 
-const SITE_URL = "https://ldsgct.org";
+const SITE_URL = "https://www.ldsgct.org";
 const today = new Date().toISOString().slice(0, 10);
 
 const staticRoutes = [
