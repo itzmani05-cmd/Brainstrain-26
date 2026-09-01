@@ -23,6 +23,10 @@ const faqs = [
     q: "How does the referral code work?",
     a: "When someone registers using your referral code, ₹10 will be credited to your account one day before the event.",
   },
+  {
+    q: "What if I’m unable to attend the event due to unforeseen circumstances?",
+    a: "A 50% refund of the registration fee paid will be provided.",
+  },
 ];
 
 export default faqs;

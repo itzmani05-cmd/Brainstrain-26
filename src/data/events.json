@@ -176,7 +176,7 @@
   {
     "name": "Microtale",
     "slug": "microtale",
-    "description": "Embark on a literary journey of brevity and depth at our Microtale event! With just a few words, weave stories that linger in minds and hearts. Join us for poetic magic where the tiniest tales hold the mightiest power by unleashing your creativity and crafting miniature worlds where every letter counts.",
+    "description": "Every ordinary moment has a story hiding beneath it - a stranger’s glance, an abandoned chair, a door left half-open. In a few carefully chosen words, bring that hidden story to life. Let your microtale be small in length, but leave behind the feeling of a story much larger than itself",
     "guidelines": [
       "Individual participation only.",
       "It is a single-round event.",
@@ -211,7 +211,7 @@
   {
     "name": "Poem",
     "slug": "poem",
-    "description": "Let your words dance with emotions and paint vivid pictures through poetry! This event is a stage for your imagination, where creativity meets expression, and every verse tells a story straight from the heart.",
+    "description": "A picture holds more than what the eye can see - a shadow may carry a memory, a window may hide a story and a smile may speak of things left unsaid. This is a space to look beyond the obvious and turn those unseen fragments into poetry. Let the image be your beginning and let your words discover what lies beyond it.",
     "guidelines": [
       "Individual participation.",
       "It is a single-round event.",
@@ -346,7 +346,6 @@
         "heading": "Prelims",
         "items": [
           "A hypothetical scenario will be given on the spot.",
-          "Participants requiring karaoke/background audio or video must submit the required file through the designated link before the commencement of the event.",
           "Each participant must speak for 1 minute 30 seconds",
           "The Top 6 participants will receive a premium ticket to sail in the Cruise (Finals)",
           "Participants who are shortlisted will advance to the Finals."
