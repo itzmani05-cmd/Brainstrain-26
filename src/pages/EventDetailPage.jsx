@@ -65,6 +65,12 @@ export default function EventDetailPage() {
                 {event.name}
               </h1>
 
+              {event.rounds && (
+                <p className="mt-2 text-center font-body text-xs tracking-[0.2em] text-bs-white/50">
+                  {event.rounds === 1 ? "SINGLE ROUND EVENT" : `${event.rounds}-ROUND EVENT`}
+                </p>
+              )}
+
               <EventDescription description={event.description} />
               <EventInfoList title="GUIDELINES" items={event.guidelines} />
               <EventInfoList title="RULES" items={event.rules} />

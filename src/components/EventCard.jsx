@@ -39,6 +39,11 @@ export default function EventCard({ event }) {
                   Prize Pool: {event.prize_pool}
                 </span>
               )}
+              {event.rounds && (
+                <span className="rounded-lg border border-white/25 px-4 py-2 font-body text-xs tracking-widest text-white/70 4xl:px-6 4xl:py-3 4xl:text-base">
+                  {event.rounds === 1 ? "SINGLE ROUND" : `${event.rounds} ROUNDS`}
+                </span>
+              )}
               {!event.registration_open && (
                 <span className="rounded-lg border border-red-400 px-4 py-2 font-body text-xs tracking-widest text-red-300 4xl:px-6 4xl:py-3 4xl:text-base">
                   REGISTRATION CLOSED

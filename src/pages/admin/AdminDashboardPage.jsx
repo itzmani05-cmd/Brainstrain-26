@@ -4,7 +4,254 @@ import PageBackdrop from "../../components/PageBackdrop";
 import ScriptHeading from "../../components/ScriptHeading";
 import events from "../../data/events";
 import { apiUrl } from "../../lib/api";
+import { decodeAdminToken } from "../../lib/adminToken";
 import useSeo, { SITE_NAME } from "../../hooks/useSeo";
+
+function EventPassButton({ slug, authHeaders }) {
+  const [working, setWorking] = useState(false);
+  const [url, setUrl] = useState("");
+  const [error, setError] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  async function generate() {
+    setWorking(true);
+    setError(false);
+    setCopied(false);
+    try {
+      const res = await fetch(apiUrl("/api/admin/event-pass"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ eventSlug: slug }),
+      });
+      if (!res.ok) throw new Error("Failed to generate pass");
+      const { token } = await res.json();
+      setUrl(`${window.location.origin}/admin/${slug}?pass=${token}`);
+    } catch {
+      setError(true);
+    } finally {
+      setWorking(false);
+    }
+  }
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard permission denied — the link is still visible to select/copy manually
+    }
+  }
+
+  return (
+    <div className="flex flex-1 flex-wrap items-center gap-2">
+      <button
+        type="button"
+        onClick={generate}
+        disabled={working}
+        className={`rounded-full border px-3 py-1.5 font-body text-xs transition disabled:cursor-not-allowed disabled:opacity-60 ${
+          error
+            ? "border-red-400/60 text-red-400"
+            : "border-white/20 text-white/70 hover:border-bs-pink hover:text-white"
+        }`}
+      >
+        {working ? "GENERATING…" : error ? "FAILED — RETRY" : url ? "REGENERATE PASS" : "GENERATE PASS"}
+      </button>
+      {url && (
+        <div className="flex min-w-0 flex-1 items-center gap-2">
+          <input
+            type="text"
+            readOnly
+            value={url}
+            onFocus={(e) => e.target.select()}
+            className="min-w-0 flex-1 rounded-lg border border-white/20 bg-black/30 px-2.5 py-1.5 font-body text-xs text-white/80 outline-none focus:border-bs-pink"
+          />
+          <button
+            type="button"
+            onClick={copy}
+            className={`shrink-0 rounded-full border px-3 py-1.5 font-body text-xs transition ${
+              copied
+                ? "border-bs-blue text-bs-blue"
+                : "border-white/20 text-white/70 hover:border-bs-pink hover:text-white"
+            }`}
+          >
+            {copied ? "COPIED ✓" : "COPY"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const MANUAL_EMPTY = {
+  name: "",
+  email: "",
+  phone: "",
+  collegeName: "",
+  collegeCity: "",
+  referralCode: "",
+  attendingDrama: false,
+  dramaLeaderName: "",
+  dramaCollegeName: "",
+};
+
+const manualInputClass =
+  "w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 font-body text-sm text-white placeholder:text-white/30 outline-none focus:border-bs-pink";
+
+function ManualRegistrationForm({ authHeaders, onRegistered }) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(MANUAL_EMPTY);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [lastId, setLastId] = useState("");
+
+  function update(field, value) {
+    setData((d) => ({ ...d, [field]: value }));
+  }
+
+  async function submit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+    setLastId("");
+    try {
+      const res = await fetch(apiUrl("/api/admin/registrations/manual"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...authHeaders() },
+        body: JSON.stringify(data),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || "Failed to register");
+      setLastId(body.participantId);
+      setData(MANUAL_EMPTY);
+      onRegistered();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="rounded-full bg-bs-blue/20 px-4 py-1.5 font-body text-xs font-semibold text-bs-blue transition hover:bg-bs-blue/30"
+      >
+        + REGISTER WALK-IN
+      </button>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="mt-1 space-y-3">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <input
+          type="text"
+          required
+          placeholder="Name"
+          value={data.name}
+          onChange={(e) => update("name", e.target.value)}
+          className={manualInputClass}
+        />
+        <input
+          type="email"
+          required
+          placeholder="Email"
+          value={data.email}
+          onChange={(e) => update("email", e.target.value)}
+          className={manualInputClass}
+        />
+        <input
+          type="tel"
+          required
+          pattern="[0-9]{10}"
+          title="Enter a 10-digit phone number"
+          placeholder="Phone"
+          value={data.phone}
+          onChange={(e) => update("phone", e.target.value)}
+          className={manualInputClass}
+        />
+        <input
+          type="text"
+          placeholder="Referral code (optional)"
+          value={data.referralCode}
+          onChange={(e) => update("referralCode", e.target.value)}
+          className={manualInputClass}
+        />
+        <input
+          type="text"
+          required
+          placeholder="College name"
+          value={data.collegeName}
+          onChange={(e) => update("collegeName", e.target.value)}
+          className={manualInputClass}
+        />
+        <input
+          type="text"
+          required
+          placeholder="College city"
+          value={data.collegeCity}
+          onChange={(e) => update("collegeCity", e.target.value)}
+          className={manualInputClass}
+        />
+      </div>
+
+      <label className="flex items-center gap-2 font-body text-sm text-white/80">
+        <input
+          type="checkbox"
+          checked={data.attendingDrama}
+          onChange={(e) => update("attendingDrama", e.target.checked)}
+          className="h-4 w-4 rounded border-white/30 bg-black/30 accent-bs-pink"
+        />
+        Attending Drama?
+      </label>
+
+      {data.attendingDrama && (
+        <div className="grid gap-3 sm:grid-cols-2">
+          <input
+            type="text"
+            required
+            placeholder="Team leader name"
+            value={data.dramaLeaderName}
+            onChange={(e) => update("dramaLeaderName", e.target.value)}
+            className={manualInputClass}
+          />
+          <input
+            type="text"
+            required
+            placeholder="Team name"
+            value={data.dramaCollegeName}
+            onChange={(e) => update("dramaCollegeName", e.target.value)}
+            className={manualInputClass}
+          />
+        </div>
+      )}
+
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="submit"
+          disabled={submitting}
+          className="rounded-full bg-bs-pink/20 px-4 py-1.5 font-body text-xs font-semibold text-bs-pink transition hover:bg-bs-pink/30 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {submitting ? "SAVING…" : "SAVE & VERIFY"}
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="font-body text-xs text-white/50 underline-offset-4 hover:text-white hover:underline"
+        >
+          CANCEL
+        </button>
+        {lastId && (
+          <span className="font-body text-xs text-bs-blue">Registered as {lastId} ✓</span>
+        )}
+        {error && <span className="font-body text-xs text-red-400">{error}</span>}
+      </div>
+    </form>
+  );
+}
 
 function StepFlag({ done, label }) {
   return (
@@ -50,6 +297,9 @@ export default function AdminDashboardPage() {
   const [feeInput, setFeeInput] = useState("");
   const [feeSaving, setFeeSaving] = useState(false);
   const [feeSaved, setFeeSaved] = useState(false);
+  const [registrationOpen, setRegistrationOpen] = useState(null);
+  const [statusSaving, setStatusSaving] = useState(false);
+  const [results, setResults] = useState(null);
   const [remindersSending, setRemindersSending] = useState(false);
   const [remindersResult, setRemindersResult] = useState("");
   const [remindersFailed, setRemindersFailed] = useState(false);
@@ -63,6 +313,13 @@ export default function AdminDashboardPage() {
     const token = localStorage.getItem("bs_admin_token");
     if (!token) {
       navigate("/admin/login");
+      return;
+    }
+
+    const claims = decodeAdminToken(token);
+    if (claims?.eventSlug) {
+      // Coordinator passes are scoped to one event — send them straight there.
+      navigate(`/admin/${claims.eventSlug}`, { replace: true });
       return;
     }
 
@@ -86,6 +343,21 @@ export default function AdminDashboardPage() {
         setFee(body.amount);
         setFeeInput(String(body.amount));
       })
+      .catch(() => {});
+
+    fetch(apiUrl("/api/registration-status"))
+      .then((res) => res.json())
+      .then((body) => setRegistrationOpen(body.open))
+      .catch(() => {});
+
+    Promise.all(
+      events.map((ev) =>
+        fetch(apiUrl(`/api/events/${ev.slug}/result`))
+          .then((res) => (res.ok ? res.json() : null))
+          .then((body) => [ev.slug, body])
+      )
+    )
+      .then((entries) => setResults(Object.fromEntries(entries)))
       .catch(() => {});
   }
 
@@ -111,6 +383,24 @@ export default function AdminDashboardPage() {
       setError(err.message);
     } finally {
       setFeeSaving(false);
+    }
+  }
+
+  async function toggleRegistrationOpen() {
+    const next = !registrationOpen;
+    setStatusSaving(true);
+    try {
+      const res = await fetch(apiUrl("/api/admin/registration-status"), {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ open: next }),
+      });
+      if (!res.ok) throw new Error("Failed to update registration status");
+      setRegistrationOpen(next);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setStatusSaving(false);
     }
   }
 
@@ -186,13 +476,21 @@ export default function AdminDashboardPage() {
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-32">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <ScriptHeading as="h1">Registrations</ScriptHeading>
-          <button
-            type="button"
-            onClick={logout}
-            className="font-body text-sm text-white/60 underline-offset-4 transition hover:text-white hover:underline"
-          >
-            LOG OUT
-          </button>
+          <div className="flex items-center gap-5">
+            <Link
+              to="/admin/leaderboard"
+              className="font-body text-sm text-white/60 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              VIEW LEADERBOARD
+            </Link>
+            <button
+              type="button"
+              onClick={logout}
+              className="font-body text-sm text-white/60 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              LOG OUT
+            </button>
+          </div>
         </div>
 
         <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
@@ -243,18 +541,101 @@ export default function AdminDashboardPage() {
 
         <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
           <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">
+            ONLINE REGISTRATION
+          </h2>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <span
+              className={`font-body text-2xl font-semibold ${
+                registrationOpen ? "text-bs-blue" : "text-red-400"
+              }`}
+            >
+              {registrationOpen == null ? "…" : registrationOpen ? "OPEN" : "CLOSED"}
+            </span>
+            <button
+              type="button"
+              disabled={registrationOpen == null || statusSaving}
+              onClick={toggleRegistrationOpen}
+              className="ml-auto rounded-full border border-white/20 px-3 py-1.5 font-body text-xs text-white/70 transition hover:border-bs-pink hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {statusSaving
+                ? "SAVING…"
+                : registrationOpen
+                  ? "CLOSE REGISTRATION (SHOW ON-SPOT)"
+                  : "REOPEN ONLINE REGISTRATION"}
+            </button>
+          </div>
+          <p className="mt-2 font-body text-xs text-white/40">
+            When closed, the public site shows an "on-spot registration" notice instead of
+            the form. Use Walk-in Registration below to enter details at the venue.
+          </p>
+        </div>
+
+        <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
+          <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">
+            WALK-IN REGISTRATION
+          </h2>
+          <p className="mt-1 font-body text-xs text-white/40">
+            Enter a participant's details on their behalf — saved as paid &amp; verified
+            immediately, with a participant ID issued on the spot.
+          </p>
+          <div className="mt-3">
+            <ManualRegistrationForm authHeaders={authHeaders} onRegistered={load} />
+          </div>
+        </div>
+
+        <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
+          <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">
             EVENT ATTENDANCE
           </h2>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <p className="mt-1 font-body text-xs text-white/40">
+            Each event has its own coordinator — generate a pass to give them a scoped
+            login that only manages attendance for that event.
+          </p>
+          <div className="mt-3 flex flex-col divide-y divide-white/5">
             {events.map((ev) => (
-              <Link
-                key={ev.slug}
-                to={`/admin/${ev.slug}`}
-                className="rounded-full border border-white/20 px-3 py-1.5 font-body text-xs text-white/80 transition hover:border-bs-blue hover:text-white"
-              >
-                {ev.name} →
-              </Link>
+              <div key={ev.slug} className="flex flex-wrap items-center gap-2 py-2">
+                <Link
+                  to={`/admin/${ev.slug}`}
+                  className="rounded-full border border-white/20 px-3 py-1.5 font-body text-xs text-white/80 transition hover:border-bs-blue hover:text-white"
+                >
+                  {ev.name} →
+                </Link>
+                <EventPassButton slug={ev.slug} authHeaders={authHeaders} />
+              </div>
             ))}
+          </div>
+        </div>
+
+        <div className="glass-card mb-8 rounded-[24px] p-5 sm:p-6">
+          <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">RESULTS</h2>
+          <p className="mt-1 font-body text-xs text-white/40">
+            Winners are entered per event — click an event to add or edit its placements.
+          </p>
+          <div className="mt-3 flex flex-col divide-y divide-white/5">
+            {events.map((ev) => {
+              const r = results?.[ev.slug];
+              const hasResult = r?.winner?.name;
+              return (
+                <Link
+                  key={ev.slug}
+                  to={`/admin/${ev.slug}`}
+                  className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2.5 text-sm transition hover:bg-white/5"
+                >
+                  <span className="w-32 shrink-0 font-body text-white/80">{ev.name}</span>
+                  {results == null ? (
+                    <span className="font-body text-xs text-white/30">…</span>
+                  ) : hasResult ? (
+                    <span className="font-body text-xs text-bs-white/70">
+                      🥇 {r.winner.name}
+                      {r.runnerUp?.name && <> · 🥈 {r.runnerUp.name}</>}
+                      {r.thirdPlace?.name && <> · 🥉 {r.thirdPlace.name}</>}
+                    </span>
+                  ) : (
+                    <span className="font-body text-xs text-white/30">Not entered yet</span>
+                  )}
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -280,6 +661,29 @@ export default function AdminDashboardPage() {
             )}
           </div>
         </div>
+
+        {registrations && registrations.length > 0 && (
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="glass-card rounded-[24px] p-5 sm:p-6">
+              <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">PARTICIPANTS</h2>
+              <span className="mt-2 block font-body text-3xl font-semibold text-white">
+                {registrations.length}
+              </span>
+            </div>
+            <div className="glass-card rounded-[24px] p-5 sm:p-6">
+              <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">VERIFIED</h2>
+              <span className="mt-2 block font-body text-3xl font-semibold text-bs-blue">
+                {registrations.filter((r) => r.paymentVerified).length}
+              </span>
+            </div>
+            <div className="glass-card rounded-[24px] p-5 sm:p-6">
+              <h2 className="font-body text-xs tracking-[0.2em] text-bs-white/60">NOT VERIFIED</h2>
+              <span className="mt-2 block font-body text-3xl font-semibold text-bs-pink">
+                {registrations.filter((r) => !r.paymentVerified).length}
+              </span>
+            </div>
+          </div>
+        )}
 
         {error && <p className="font-body text-sm text-red-400">{error}</p>}
 

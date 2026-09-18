@@ -8,6 +8,7 @@ import TeamPage from "./pages/TeamPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import AdminLeaderboardPage from "./pages/admin/AdminLeaderboardPage";
 import AdminEventAttendancePage from "./pages/admin/AdminEventAttendancePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/admin/leaderboard" element={<AdminLeaderboardPage />} />
         <Route path="/admin/:eventSlug" element={<AdminEventAttendancePage />} />
 
         <Route path="*" element={<NotFoundPage />} />

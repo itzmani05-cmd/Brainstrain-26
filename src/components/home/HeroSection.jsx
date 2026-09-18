@@ -1,11 +1,14 @@
 import NeonButton from "../NeonButton";
 import CountdownTimer from "../CountdownTimer";
 import { CalendarIcon, LocationIcon } from "../icons";
+import useRegistrationStatus from "../../hooks/useRegistrationStatus";
 import bgHero from "../../assets/bg-hero.webp";
 
 const EVENT_DATE = new Date("2026-09-19T00:00:00");
 
 export default function HeroSection() {
+  const registrationOpen = useRegistrationStatus();
+
   return (
     <section
       className="hero-bg relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 pb-6 pt-12 text-center sm:min-h-0 sm:justify-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24 2xl:pb-40 2xl:pt-28 4xl:pb-56 4xl:pt-40 6xl:pb-72 6xl:pt-56"
@@ -74,7 +77,7 @@ export default function HeroSection() {
           color="pink"
           className="animate-pulse-glow w-[85%] max-w-[380px] mx-auto bg-black/40 sm:w-auto sm:mx-0 lg:px-7 lg:py-3.5 lg:text-lg 2xl:px-9 2xl:py-4 2xl:text-xl 4xl:px-12 4xl:py-5 4xl:text-2xl 6xl:px-16 6xl:py-7 6xl:text-4xl"
         >
-          REGISTER NOW
+          {registrationOpen ? "REGISTER NOW" : "REGISTER ON SPOT"}
         </NeonButton>
         <NeonButton
           to="/events"

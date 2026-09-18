@@ -14,10 +14,13 @@ function sign(payload) {
   return crypto.createHmac("sha256", secret()).update(payload).digest("base64url");
 }
 
-export function issueToken() {
-  const payload = Buffer.from(JSON.stringify({ exp: Date.now() + TOKEN_TTL_MS })).toString(
-    "base64url"
-  );
+// A full admin token has no eventSlug claim. A coordinator "pass" token is scoped
+// to a single event and is rejected by requireFullAdmin and by any event-scoped
+// route whose :eventSlug doesn't match the claim.
+export function issueToken(claims = {}) {
+  const payload = Buffer.from(
+    JSON.stringify({ exp: Date.now() + TOKEN_TTL_MS, ...claims })
+  ).toString("base64url");
   return `${payload}.${sign(payload)}`;
 }
 
@@ -38,13 +41,22 @@ export function requireAdmin(req, res, next) {
   }
 
   try {
-    const { exp } = JSON.parse(Buffer.from(payload, "base64url").toString());
-    if (!exp || exp < Date.now()) {
+    const claims = JSON.parse(Buffer.from(payload, "base64url").toString());
+    if (!claims.exp || claims.exp < Date.now()) {
       return res.status(401).json({ error: "Unauthorized" });
     }
+    req.admin = { eventSlug: claims.eventSlug || null };
   } catch {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
+  next();
+}
+
+// Use after requireAdmin to block coordinator passes from full-admin-only routes.
+export function requireFullAdmin(req, res, next) {
+  if (req.admin?.eventSlug) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
   next();
 }

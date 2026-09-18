@@ -22,6 +22,7 @@
     ],
     "category": "Performance",
     "image_url": "adzap",
+    "rounds": 1,
     "contacts": [
       {
         "name": "Sakthi Priya K",
@@ -73,6 +74,7 @@
     ],
     "category": "Speaking",
     "image_url": "debate",
+    "rounds": 2,
     "contacts": [
       {
         "name": "Varshini",
@@ -112,6 +114,7 @@
     ],
     "category": "Performance",
     "image_url": "drama",
+    "rounds": 1,
     "contacts": [
       {
         "name": "Raveena",
@@ -157,6 +160,7 @@
     ],
     "category": "Speaking",
     "image_url": "jam",
+    "rounds": 2,
     "contacts": [
       {
         "name": "Gokula Krishnan",
@@ -192,6 +196,7 @@
     ],
     "category": "Literary",
     "image_url": "microtale",
+    "rounds": 1,
     "contacts": [
       {
         "name": "Mathimalar V",
@@ -227,6 +232,7 @@
     ],
     "category": "Literary",
     "image_url": "poem",
+    "rounds": 1,
     "contacts": [
       {
         "name": "Mathimalar V",
@@ -259,6 +265,7 @@
     ],
     "category": "Puzzle",
     "image_url": "puzzle",
+    "rounds": 1,
     "contacts": [
       {
         "name": "Sanjeev Krishna",
@@ -307,6 +314,7 @@
     ],
     "category": "Quiz",
     "image_url": "quiz",
+    "rounds": 2,
     "contacts": [
       {
         "name": "Sanjeev Krishna",
@@ -364,6 +372,7 @@
     ],
     "category": "Group Discussion",
     "image_url": "shipwreck",
+    "rounds": 2,
     "contacts": [
       {
         "name": "Fathima Sanaa S",
@@ -417,6 +426,7 @@
     ],
     "category": "Speaking",
     "image_url": "uno-minuto",
+    "rounds": 2,
     "contacts": [
       {
         "name": "Lakshmi Priya",
