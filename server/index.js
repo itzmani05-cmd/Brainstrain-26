@@ -73,10 +73,21 @@ app.put("/api/admin/registration-status", requireAdmin, requireFullAdmin, async 
   }
 });
 
+// Winner/runner-up support multiple participant IDs (team events); third
+// place stays a single ID. Normalizes old single-string docs to arrays.
+function placementIds(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === "string" && value) return [value];
+  return [];
+}
+
 // Results store participant IDs; this resolves each to {id, name, collegeName}
 // (name/collegeName null if the ID doesn't match a registration) for display.
 async function resolvePlacements(db, doc) {
-  const ids = [doc?.winner, doc?.runnerUp, doc?.thirdPlace].filter(Boolean);
+  const winnerIds = placementIds(doc?.winner);
+  const runnerUpIds = placementIds(doc?.runnerUp);
+  const thirdPlaceId = doc?.thirdPlace || null;
+  const ids = [...winnerIds, ...runnerUpIds, ...(thirdPlaceId ? [thirdPlaceId] : [])];
   const byId = new Map();
   if (ids.length) {
     const matches = await db
@@ -93,9 +104,9 @@ async function resolvePlacements(db, doc) {
   };
 
   return {
-    winner: toPlacement(doc?.winner),
-    runnerUp: toPlacement(doc?.runnerUp),
-    thirdPlace: toPlacement(doc?.thirdPlace),
+    winner: winnerIds.map(toPlacement),
+    runnerUp: runnerUpIds.map(toPlacement),
+    thirdPlace: toPlacement(thirdPlaceId),
   };
 }
 
@@ -379,22 +390,37 @@ app.put("/api/admin/events/:eventSlug/result", requireAdmin, async (req, res) =>
   }
 
   const { winner, runnerUp, thirdPlace } = req.body || {};
+  if (thirdPlace != null && typeof thirdPlace !== "string") {
+    return res.status(400).json({ error: "thirdPlace must be a participant ID" });
+  }
   if (
-    [winner, runnerUp, thirdPlace].some((v) => v != null && typeof v !== "string")
+    [winner, runnerUp].some(
+      (v) => v != null && !Array.isArray(v) && typeof v !== "string"
+    )
   ) {
-    return res.status(400).json({ error: "winner, runnerUp, and thirdPlace must be participant IDs" });
+    return res.status(400).json({ error: "winner and runnerUp must be participant IDs" });
   }
 
+  // winner/runnerUp accept an array of IDs (team events); a bare string is
+  // also accepted for back-compat with single-winner callers.
+  const normalizeIds = (value) =>
+    (Array.isArray(value) ? value : value ? [value] : [])
+      .filter((v) => typeof v === "string")
+      .map((v) => v.trim().toUpperCase())
+      .filter(Boolean);
+
   const placements = {
-    winner: (winner || "").trim().toUpperCase(),
-    runnerUp: (runnerUp || "").trim().toUpperCase(),
+    winner: normalizeIds(winner),
+    runnerUp: normalizeIds(runnerUp),
     thirdPlace: (thirdPlace || "").trim().toUpperCase(),
   };
 
   try {
     const db = await getDb();
 
-    const ids = [...new Set(Object.values(placements).filter(Boolean))];
+    const ids = [
+      ...new Set([...placements.winner, ...placements.runnerUp, ...(placements.thirdPlace ? [placements.thirdPlace] : [])]),
+    ];
     if (ids.length) {
       const matches = await db
         .collection("registrations")
@@ -565,8 +591,8 @@ app.get("/api/college-points", requireAdmin, requireFullAdmin, async (req, res) 
     }
 
     for (const doc of resultDocs) {
-      if (doc.winner) add(collegeByParticipantId.get(doc.winner), "wins", 5);
-      if (doc.runnerUp) add(collegeByParticipantId.get(doc.runnerUp), "runnerUps", 3);
+      placementIds(doc.winner).forEach((id) => add(collegeByParticipantId.get(id), "wins", 5));
+      placementIds(doc.runnerUp).forEach((id) => add(collegeByParticipantId.get(id), "runnerUps", 3));
     }
 
     const colleges = [...totals.entries()]

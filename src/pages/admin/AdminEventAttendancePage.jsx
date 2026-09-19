@@ -24,7 +24,7 @@ export default function AdminEventAttendancePage() {
   const [forbidden, setForbidden] = useState(false);
   const [search, setSearch] = useState("");
   const [isCoordinator, setIsCoordinator] = useState(false);
-  const [resultInputs, setResultInputs] = useState({ winner: "", runnerUp: "", thirdPlace: "" });
+  const [resultInputs, setResultInputs] = useState({ winner: [""], runnerUp: [""], thirdPlace: "" });
   const [resultSaving, setResultSaving] = useState(false);
   const [resultSaved, setResultSaved] = useState(false);
   const [resultError, setResultError] = useState("");
@@ -86,8 +86,8 @@ export default function AdminEventAttendancePage() {
       .then((body) => {
         if (body) {
           setResultInputs({
-            winner: body.winner?.id || "",
-            runnerUp: body.runnerUp?.id || "",
+            winner: body.winner?.length ? body.winner.map((p) => p.id) : [""],
+            runnerUp: body.runnerUp?.length ? body.runnerUp.map((p) => p.id) : [""],
             thirdPlace: body.thirdPlace?.id || "",
           });
         }
@@ -103,16 +103,43 @@ export default function AdminEventAttendancePage() {
     return registrations?.find((r) => r.participantId === trimmed) || null;
   }
 
+  // Winner/runner-up hold one input per team member; third place stays single.
+  function addPlacementField(key) {
+    setResultInputs((r) => ({ ...r, [key]: [...r[key], ""] }));
+    setResultSaved(false);
+  }
+
+  function updatePlacementField(key, index, value) {
+    setResultInputs((r) => ({
+      ...r,
+      [key]: r[key].map((v, i) => (i === index ? value : v)),
+    }));
+    setResultSaved(false);
+  }
+
+  function removePlacementField(key, index) {
+    setResultInputs((r) => ({
+      ...r,
+      [key]: r[key].length > 1 ? r[key].filter((_, i) => i !== index) : r[key],
+    }));
+    setResultSaved(false);
+  }
+
   async function saveResult(e) {
     e.preventDefault();
     setResultSaving(true);
     setResultSaved(false);
     setResultError("");
     try {
+      const payload = {
+        winner: resultInputs.winner.map((v) => v.trim()).filter(Boolean),
+        runnerUp: resultInputs.runnerUp.map((v) => v.trim()).filter(Boolean),
+        thirdPlace: resultInputs.thirdPlace,
+      };
       const res = await fetch(apiUrl(`/api/admin/events/${eventSlug}/result`), {
         method: "PUT",
         headers: { "Content-Type": "application/json", ...authHeaders() },
-        body: JSON.stringify(resultInputs),
+        body: JSON.stringify(payload),
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error || "Failed to save result");
@@ -234,35 +261,85 @@ export default function AdminEventAttendancePage() {
             {[
               { key: "winner", emoji: "🥇", label: "WINNER" },
               { key: "runnerUp", emoji: "🥈", label: "RUNNER-UP" },
-              { key: "thirdPlace", emoji: "🥉", label: "THIRD PLACE" },
-            ].map(({ key, emoji, label }) => {
-              const match = lookupParticipant(resultInputs[key]);
-              const typed = resultInputs[key].trim();
-              return (
-                <label key={key} className="block">
-                  <span className="mb-1.5 block font-body text-xs tracking-[0.15em] text-bs-white/60">
+            ].map(({ key, emoji, label }) => (
+              <div key={key} className="block">
+                <span className="mb-1.5 flex items-center justify-between font-body text-xs tracking-[0.15em] text-bs-white/60">
+                  <span>
                     {emoji} {label}
                   </span>
-                  <input
-                    type="text"
-                    value={resultInputs[key]}
-                    onChange={(e) => {
-                      setResultInputs((r) => ({ ...r, [key]: e.target.value }));
-                      setResultSaved(false);
-                    }}
-                    placeholder="BS ID, e.g. BS26003"
-                    className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 font-body text-sm uppercase text-white placeholder:text-white/30 placeholder:normal-case outline-none focus:border-bs-pink"
-                  />
-                  {typed && (
-                    <p
-                      className={`mt-1 font-body text-xs ${match ? "text-bs-blue" : "text-red-400"}`}
-                    >
-                      {match ? `✓ ${match.name} · ${match.collegeName}` : "ID not found"}
-                    </p>
-                  )}
-                </label>
-              );
-            })}
+                  <button
+                    type="button"
+                    onClick={() => addPlacementField(key)}
+                    className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-semibold normal-case tracking-normal text-white/70 transition hover:bg-white/20"
+                    title="Add another team member"
+                  >
+                    + ADD
+                  </button>
+                </span>
+                <div className="space-y-2">
+                  {resultInputs[key].map((value, index) => {
+                    const match = lookupParticipant(value);
+                    const typed = value.trim();
+                    return (
+                      <div key={index}>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            value={value}
+                            onChange={(e) => updatePlacementField(key, index, e.target.value)}
+                            placeholder="BS ID, e.g. BS26003"
+                            className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 pr-8 font-body text-sm uppercase text-white placeholder:text-white/30 placeholder:normal-case outline-none focus:border-bs-pink"
+                          />
+                          {resultInputs[key].length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removePlacementField(key, index)}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 transition hover:text-red-400"
+                              title="Remove"
+                            >
+                              ×
+                            </button>
+                          )}
+                        </div>
+                        {typed && (
+                          <p
+                            className={`mt-1 font-body text-xs ${match ? "text-bs-blue" : "text-red-400"}`}
+                          >
+                            {match ? `✓ ${match.name} · ${match.collegeName}` : "ID not found"}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+            <label className="block">
+              <span className="mb-1.5 block font-body text-xs tracking-[0.15em] text-bs-white/60">
+                🥉 THIRD PLACE
+              </span>
+              <input
+                type="text"
+                value={resultInputs.thirdPlace}
+                onChange={(e) => {
+                  setResultInputs((r) => ({ ...r, thirdPlace: e.target.value }));
+                  setResultSaved(false);
+                }}
+                placeholder="BS ID, e.g. BS26003"
+                className="w-full rounded-lg border border-white/20 bg-black/30 px-3 py-2 font-body text-sm uppercase text-white placeholder:text-white/30 placeholder:normal-case outline-none focus:border-bs-pink"
+              />
+              {resultInputs.thirdPlace.trim() && (
+                <p
+                  className={`mt-1 font-body text-xs ${
+                    lookupParticipant(resultInputs.thirdPlace) ? "text-bs-blue" : "text-red-400"
+                  }`}
+                >
+                  {lookupParticipant(resultInputs.thirdPlace)
+                    ? `✓ ${lookupParticipant(resultInputs.thirdPlace).name} · ${lookupParticipant(resultInputs.thirdPlace).collegeName}`
+                    : "ID not found"}
+                </p>
+              )}
+            </label>
             <div className="flex flex-wrap items-center gap-3 sm:col-span-3">
               <button
                 type="submit"

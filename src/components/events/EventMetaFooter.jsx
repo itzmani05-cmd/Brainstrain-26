@@ -17,13 +17,17 @@ function EventResults({ slug }) {
     };
   }, [slug]);
 
-  if (!result?.winner?.name) return null;
+  const toEntries = (v) => (Array.isArray(v) ? v : v ? [v] : []);
+
+  if (!toEntries(result?.winner).length) return null;
 
   const places = [
-    { emoji: "🥇", label: "WINNER", entry: result.winner },
-    { emoji: "🥈", label: "RUNNER-UP", entry: result.runnerUp },
-    { emoji: "🥉", label: "THIRD PLACE", entry: result.thirdPlace },
-  ].filter((p) => p.entry?.name);
+    { emoji: "🥇", label: "WINNER", entries: result.winner },
+    { emoji: "🥈", label: "RUNNER-UP", entries: result.runnerUp },
+    { emoji: "🥉", label: "THIRD PLACE", entries: result.thirdPlace },
+  ]
+    .map((p) => ({ ...p, entries: toEntries(p.entries).filter((e) => e?.name) }))
+    .filter((p) => p.entries.length);
 
   return (
     <div className="mt-12 border-t border-white/10 pt-8 4xl:mt-16 4xl:pt-12">
@@ -31,18 +35,23 @@ function EventResults({ slug }) {
         RESULTS
       </h3>
       <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
-        {places.map((p) => (
-          <div key={p.label} className="text-center">
-            <p className="text-2xl 4xl:text-3xl">{p.emoji}</p>
-            <p className="font-body text-xs tracking-[0.15em] text-bs-white/50 4xl:text-sm">
-              {p.label}
-            </p>
-            <p className="font-body text-white 4xl:text-xl 6xl:text-2xl">{p.entry.name}</p>
-            {p.entry.collegeName && (
-              <p className="font-body text-xs text-bs-white/50">{p.entry.collegeName}</p>
-            )}
-          </div>
-        ))}
+        {places.map((p) => {
+          const colleges = [...new Set(p.entries.map((e) => e.collegeName).filter(Boolean))];
+          return (
+            <div key={p.label} className="text-center">
+              <p className="text-2xl 4xl:text-3xl">{p.emoji}</p>
+              <p className="font-body text-xs tracking-[0.15em] text-bs-white/50 4xl:text-sm">
+                {p.label}
+              </p>
+              <p className="font-body text-white 4xl:text-xl 6xl:text-2xl">
+                {p.entries.map((e) => e.name).join(" & ")}
+              </p>
+              {colleges.length > 0 && (
+                <p className="font-body text-xs text-bs-white/50">{colleges.join(" & ")}</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

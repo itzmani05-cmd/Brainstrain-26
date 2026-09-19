@@ -614,7 +614,10 @@ export default function AdminDashboardPage() {
           <div className="mt-3 flex flex-col divide-y divide-white/5">
             {events.map((ev) => {
               const r = results?.[ev.slug];
-              const hasResult = r?.winner?.name;
+              const toEntries = (v) => (Array.isArray(v) ? v : v ? [v] : []);
+              const winners = toEntries(r?.winner).filter((e) => e?.name);
+              const runnerUps = toEntries(r?.runnerUp).filter((e) => e?.name);
+              const hasResult = winners.length > 0;
               return (
                 <Link
                   key={ev.slug}
@@ -626,8 +629,8 @@ export default function AdminDashboardPage() {
                     <span className="font-body text-xs text-white/30">…</span>
                   ) : hasResult ? (
                     <span className="font-body text-xs text-bs-white/70">
-                      🥇 {r.winner.name}
-                      {r.runnerUp?.name && <> · 🥈 {r.runnerUp.name}</>}
+                      🥇 {winners.map((e) => e.name).join(" & ")}
+                      {runnerUps.length > 0 && <> · 🥈 {runnerUps.map((e) => e.name).join(" & ")}</>}
                       {r.thirdPlace?.name && <> · 🥉 {r.thirdPlace.name}</>}
                     </span>
                   ) : (
